@@ -30,7 +30,7 @@ class WidgetsScreen extends StatelessWidget {
               ),
             ),
             NavigationCard(
-              title: 'Homework',
+              title: 'Homework_13',
               description: '',
               onTap: () => Navigator.push(
                 context,
