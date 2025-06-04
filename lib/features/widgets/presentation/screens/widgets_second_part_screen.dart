@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/widgets/presentation/widgets/part2/custom_widgets_example_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/widgets/part2/gesture_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part2/images_example_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/widgets/part2/text_field_example_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/widgets/part2/widget_types_example_screen.dart';
 
@@ -44,6 +45,11 @@ class WidgetsSecondPartScreen extends StatelessWidget {
                 'Input widgets for text entry with various styles, validation, '
                 'and form integration capabilities.',
             exampleScreen: TextFieldExampleScreen(),
+          ),
+          WidgetExampleCard(
+            title: 'Images',
+            description: 'Widgets for displaying images',
+            exampleScreen: ImageExampleScreen(),
           ),
         ],
       ),
