@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/homeworks/lesson_13/homework_13_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_first_part_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/screens/widgets_second_part_screen.dart';
 
 class WidgetsScreen extends StatelessWidget {
   const WidgetsScreen({super.key});
@@ -26,6 +27,18 @@ class WidgetsScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute<Widget>(
                   builder: (context) => const WidgetsFirstPartScreen(),
+                ),
+              ),
+            ),
+            NavigationCard(
+              title: 'Widgets Part 2',
+              description: 'Custom Widgets, Stateless vs Stateful Widgets, '
+                  'Gesture Detector & InkWel, '
+                  'TextFields & TextFormFields',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (context) => const WidgetsSecondPartScreen(),
                 ),
               ),
             ),
