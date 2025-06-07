@@ -3,6 +3,7 @@ import 'package:flutter_lab/features/homeworks/lesson_13/homework_13_screen.dart
 import 'package:flutter_lab/features/homeworks/lesson_14/homework_14_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_first_part_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_second_part_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/screens/widgets_third_part_screen.dart';
 
 class WidgetsScreen extends StatelessWidget {
   const WidgetsScreen({super.key});
@@ -40,6 +41,17 @@ class WidgetsScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute<Widget>(
                   builder: (context) => const WidgetsSecondPartScreen(),
+                ),
+              ),
+            ),
+            NavigationCard(
+              title: 'Understanding constraints',
+              description: 'Constraints go down. Sizes go up. Parent '
+                  'sets position.',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (context) => const WidgetsThirdPartScreen(),
                 ),
               ),
             ),
