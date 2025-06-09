@@ -27,13 +27,21 @@ class BaseNavigationSectionScreen extends StatelessWidget {
               );
             },
           ),
+          //https://docs.flutter.dev/cookbook/animation/page-route-animation
           NavagationButton(
             title: 'Simple transition with custom transition',
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => const SimpleEmptyScreen(),
+                PageRouteBuilder<Widget>(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      const SimpleEmptyScreen(),
+                  // transitionsBuilder:
+                  //     (context, animation, secondaryAnimation, child) =>
+                  //         RotationTransition(
+                  //   turns: animation,
+                  //   child: child,
+                  // ),
                 ),
               );
             },
