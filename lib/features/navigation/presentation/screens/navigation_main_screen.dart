@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation_section_screen.dart';
+import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/base_navigation_section_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_main_screen.dart';
 
 class NavigationMainScreen extends StatelessWidget {

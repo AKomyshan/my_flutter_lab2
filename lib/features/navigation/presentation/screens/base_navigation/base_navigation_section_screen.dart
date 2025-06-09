@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/features/navigation/presentation/screens/simple_empty_screen.dart';
-import 'package:flutter_lab/features/navigation/presentation/screens/simple_screen_with_data.dart';
-import 'package:flutter_lab/features/navigation/presentation/screens/simple_screen_with_returning_data.dart';
+import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_empty_screen.dart';
+import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_screen_with_data.dart';
+import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_screen_with_returning_data.dart';
 import 'package:flutter_lab/features/navigation/presentation/widgets/navigation_button.dart';
 
 class BaseNavigationSectionScreen extends StatelessWidget {
@@ -18,6 +18,17 @@ class BaseNavigationSectionScreen extends StatelessWidget {
         children: [
           NavagationButton(
             title: 'Simple transition to new screen',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (context) => const SimpleEmptyScreen(),
+                ),
+              );
+            },
+          ),
+          NavagationButton(
+            title: 'Simple transition with custom transition',
             onTap: () {
               Navigator.push(
                 context,
@@ -54,6 +65,42 @@ class BaseNavigationSectionScreen extends StatelessWidget {
                   _createSnackBar(context, result),
                 );
               }
+            },
+          ),
+          NavagationButton(
+            title: 'Navigation to modal bottom sheet',
+            onTap: () {
+              showModalBottomSheet<void>(
+                context: context,
+                backgroundColor: Colors.transparent,
+                builder: (context) => Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Modal bottom sheet example',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                        Text('Modal bottom sheet example data'),
+                        SizedBox(height: 100),
+                      ],
+                    ),
+                  ),
+                ),
+              );
             },
           ),
         ],
