@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 class NavagationButton extends StatelessWidget {
   const NavagationButton({
     required this.onTap,
+    required this.title,
     super.key,
   });
+
+  final String title;
 
   final VoidCallback onTap;
 
@@ -26,23 +29,23 @@ class NavagationButton extends StatelessWidget {
             ),
           ],
         ),
-        child: const Center(
+        child: Center(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: Text(
-                    'Simple transition to new screen',
+                    title,
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
-                Icon(
+                const Icon(
                   Icons.chevron_right,
                   color: Colors.white,
                   size: 28,
