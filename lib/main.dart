@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/features/navigation/presentation/screens/navigation_main_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_main_screen.dart';
 
 void main() {
@@ -37,6 +38,15 @@ class HomeScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute<Widget>(
                   builder: (context) => const WidgetsScreen(),
+                ),
+              ),
+            ),
+            FeatureCard(
+              title: 'Navigation',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (context) => const NavigationMainScreen(),
                 ),
               ),
             ),
