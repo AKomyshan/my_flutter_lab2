@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/base_navigation_section_screen.dart';
+import 'package:flutter_lab/features/navigation/presentation/screens/named_navigation/named_routes_navigation.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_main_screen.dart';
 
 class NavigationMainScreen extends StatelessWidget {
@@ -21,6 +22,16 @@ class NavigationMainScreen extends StatelessWidget {
               context,
               MaterialPageRoute<Widget>(
                 builder: (context) => const BaseNavigationSectionScreen(),
+              ),
+            ),
+          ),
+          NavigationCard(
+            title: 'Navigation with named routes',
+            description: '',
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const NamedRoutesNavigationScreen(),
               ),
             ),
           ),

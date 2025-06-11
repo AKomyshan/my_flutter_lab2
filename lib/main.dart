@@ -12,6 +12,29 @@ class FlutterWidgetsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      // routes: {
+      //   '/new_screen': (context) => const SimpleEmptyScreen(),
+      //   '/simple_screen_with_data': (context) {
+      //     return SimpleScreenWithData(
+      //       id: ModalRoute.of(context)!.settings.arguments! as String,
+      //     );
+      //   },
+      // },
+      // onGenerateRoute: (settings) {
+      //   if (settings.name == '/new_screen') {
+      //     return MaterialPageRoute(
+      //       builder: (context) => const SimpleEmptyScreen(),
+      //     );
+      //   }
+      //   if (settings.name == '/simple_screen_with_data') {
+      //     return MaterialPageRoute(
+      //       builder: (context) => SimpleScreenWithData(
+      //         id: settings.arguments! as String,
+      //       ),
+      //     );
+      //   }
+      //   return null;
+      // },
       home: HomeScreen(),
     );
   }
