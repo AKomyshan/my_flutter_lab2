@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/features/widgets/presentation/screens/widgets_first_part_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/widgets/part2/custom_widgets_example_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/widgets/part2/gesture_example_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/widgets/part2/images_example_screen.dart';
@@ -17,93 +18,66 @@ class WidgetsSecondPartScreen extends StatelessWidget {
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
-        children: const [
+        children: [
           WidgetExampleCard(
             title: 'Custom Widgets',
             description:
                 'Learn how to create reusable custom widgets to avoid code '
                 'duplication and improve maintainability.',
-            exampleScreen: CustomWidgetsExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const CustomWidgetsExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Stateless vs Stateful Widgets',
             description:
                 'Understanding the fundamental types of widgets in Flutter and '
                 'when to use each one.',
-            exampleScreen: WidgetTypesExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const WidgetTypesExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'GestureDetector & InkWell',
             description:
                 'Widgets for handling touch gestures and creating interactive '
                 'elements with material design ink effects.',
-            exampleScreen: GestureExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const GestureExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'TextFields & TextFormField',
             description:
                 'Input widgets for text entry with various styles, validation, '
                 'and form integration capabilities.',
-            exampleScreen: TextFieldExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const TextFieldExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Images',
             description: 'Widgets for displaying images',
-            exampleScreen: ImageExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const ImageExampleScreen(),
+              ),
+            ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-// Reuse the WidgetExampleCard from basic_widgets_screen.dart
-class WidgetExampleCard extends StatelessWidget {
-  const WidgetExampleCard({
-    required this.title,
-    required this.description,
-    required this.exampleScreen,
-    super.key,
-  });
-  final String title;
-  final String description;
-  final Widget exampleScreen;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 16.0),
-      child: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute<Widget>(builder: (context) => exampleScreen),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
-                ),
-              ),
-              const SizedBox(height: 8.0),
-              Text(
-                description,
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.black54,
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
