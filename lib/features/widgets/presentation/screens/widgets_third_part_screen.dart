@@ -18,31 +18,56 @@ class WidgetsThirdPartScreen extends StatelessWidget {
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
-        children: const [
+        children: [
           WidgetExampleCard(
             title: 'Example 1',
             description: 'Examples with Container',
-            child: UnderstandingConstraintsExample1(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const UnderstandingConstraintsExample1(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Example 2',
             description: 'Another example case with Container',
-            child: UnderstandingConstraintsExample2(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const UnderstandingConstraintsExample2(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Example 3',
             description: 'Examples with Column',
-            child: UnderstandingConstraintsExample3(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const UnderstandingConstraintsExample3(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Example 4',
             description: 'Examples with Row',
-            child: UnderstandingConstraintsExample4(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const UnderstandingConstraintsExample4(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Example 5',
             description: 'FittedBox example',
-            child: UnderstandingConstraintsExample5(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const UnderstandingConstraintsExample5(),
+              ),
+            ),
           ),
         ],
       ),
