@@ -40,8 +40,8 @@ abstract class ScreenNames {
   static const simpleScreenWithReturningData = 'simple-with-returning-data';
   static const simpleEmptyScreenWithCustomTransition =
       'simple-empty-with-custom-transition';
-  static const simpleTransitionWithPathParameters =
-      'simple-transition-with-path-parameters';
+  static const simpleTransitionWithArguments =
+      'simple-transition-with-arguments';
   // Understanding Constraints Examples
   static const understandingConstraintsExample1 =
       'understanding-constraints-example-1';

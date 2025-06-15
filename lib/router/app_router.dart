@@ -206,10 +206,10 @@ final router = GoRouter(
                   },
                 ),
                 GoRoute(
-                  path: 'simple-with-data/:id',
-                  name: ScreenNames.simpleTransitionWithPathParameters,
+                  path: 'simple-with-data',
+                  name: ScreenNames.simpleTransitionWithArguments,
                   builder: (context, state) => SimpleScreenWithData(
-                    id: state.pathParameters['id'] ?? '',
+                    id: state.uri.queryParameters['id'] ?? '',
                   ),
                 ),
                 GoRoute(
@@ -225,6 +225,18 @@ final router = GoRouter(
               path: 'named-routes',
               name: ScreenNames.namedRoutesNavigation,
               builder: (context, state) => const NamedRoutesNavigationScreen(),
+              routes: [
+                GoRoute(
+                  path: 'simple-empty',
+                  builder: (context, state) => const SimpleEmptyScreen(),
+                ),
+                GoRoute(
+                  path: 'simple-with-data/:id',
+                  builder: (context, state) => SimpleScreenWithData(
+                    id: state.pathParameters['id'] ?? '',
+                  ),
+                ),
+              ],
             ),
           ],
         ),

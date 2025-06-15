@@ -26,12 +26,10 @@ class BaseNavigationSectionScreen extends StatelessWidget {
             ),
           ),
           NavigationButton(
-            title: 'Transition with path parameters',
+            title: 'Transition with arguments',
             onTap: () => context.goNamed(
-              ScreenNames.simpleTransitionWithPathParameters,
-              pathParameters: {
-                'id': '123',
-              },
+              ScreenNames.simpleTransitionWithArguments,
+              queryParameters: {'id': '123'},
             ),
           ),
           NavigationButton(

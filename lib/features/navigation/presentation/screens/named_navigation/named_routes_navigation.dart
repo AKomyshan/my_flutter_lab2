@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/navigation/presentation/widgets/navigation_button.dart';
+import 'package:go_router/go_router.dart';
 
 class NamedRoutesNavigationScreen extends StatelessWidget {
   const NamedRoutesNavigationScreen({super.key});
@@ -15,19 +16,13 @@ class NamedRoutesNavigationScreen extends StatelessWidget {
         children: [
           NavigationButton(
             title: 'Simple transition to new screen',
-            onTap: () {
-              Navigator.pushNamed(context, '/new_screen');
-            },
+            onTap: () => context.go('/navigation/named-routes/simple-empty'),
           ),
           NavigationButton(
             title: 'Simple transition to new screen with data',
-            onTap: () {
-              Navigator.pushNamed(
-                context,
-                '/simple_screen_with_data',
-                arguments: 'best_product_id_ever',
-              );
-            },
+            onTap: () => context.go(
+              '/navigation/named-routes/simple-with-data/562',
+            ),
           ),
         ],
       ),
