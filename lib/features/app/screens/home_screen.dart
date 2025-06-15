@@ -19,11 +19,11 @@ class HomeScreen extends StatelessWidget {
           children: [
             FeatureCard(
               title: 'Widgets',
-              onTap: () => GoRouter.of(context).goNamed(ScreenNames.widgets),
+              onTap: () => context.goNamed(ScreenNames.widgets),
             ),
             FeatureCard(
               title: 'Navigation',
-              onTap: () => GoRouter.of(context).goNamed(ScreenNames.navigation),
+              onTap: () => context.goNamed(ScreenNames.navigation),
             ),
           ],
         ),
