@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_empty_screen.dart';
-import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_screen_with_data.dart';
-import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_screen_with_returning_data.dart';
+import 'package:flutter_lab/features/app/screens/page_names.dart';
 import 'package:flutter_lab/features/navigation/presentation/widgets/navigation_button.dart';
+import 'package:go_router/go_router.dart';
 
 class BaseNavigationSectionScreen extends StatelessWidget {
   const BaseNavigationSectionScreen({super.key});
@@ -18,54 +17,31 @@ class BaseNavigationSectionScreen extends StatelessWidget {
         children: [
           NavigationButton(
             title: 'Simple transition to new screen',
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => const SimpleEmptyScreen(),
-                ),
-              );
-            },
+            onTap: () => context.goNamed(ScreenNames.simpleEmptyScreen),
           ),
-          //https://docs.flutter.dev/cookbook/animation/page-route-animation
           NavigationButton(
             title: 'Simple transition with custom transition',
-            onTap: () {
-              Navigator.push(
-                context,
-                PageRouteBuilder<Widget>(
-                  pageBuilder: (context, animation, secondaryAnimation) =>
-                      const SimpleEmptyScreen(),
-                  // transitionsBuilder:
-                  //     (context, animation, secondaryAnimation, child) =>
-                  //         RotationTransition(
-                  //   turns: animation,
-                  //   child: child,
-                  // ),
-                ),
-              );
-            },
+            onTap: () => context.goNamed(
+              ScreenNames.simpleEmptyScreenWithCustomTransition,
+            ),
           ),
           NavigationButton(
-            title: 'Transition with arguments',
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => const SimpleScreenWithData(id: '123'),
-                ),
-              );
-            },
+            title: 'Transition with path parameters',
+            onTap: () => context.goNamed(
+              ScreenNames.simpleTransitionWithPathParameters,
+              pathParameters: {
+                'id': '123',
+              },
+            ),
           ),
           NavigationButton(
             title: 'Transition with returning data',
             onTap: () async {
-              final result = await Navigator.push(
-                context,
-                MaterialPageRoute<String>(
-                  builder: (context) =>
-                      const SimpleScreenWithReturningData(guestName: 'Pavlo'),
-                ),
+              final result = await context.pushNamed<String>(
+                ScreenNames.simpleScreenWithReturningData,
+                queryParameters: {
+                  'guestName': 'Pavlo',
+                },
               );
 
               if (result != null && context.mounted) {

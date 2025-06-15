@@ -1,20 +1,46 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/app/screens/home_screen.dart';
 import 'package:flutter_lab/features/app/screens/page_names.dart';
 import 'package:flutter_lab/features/homeworks/lesson_13/homework_13_screen.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/homework_14_screen.dart';
+import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/base_navigation_section_screen.dart';
+import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_empty_screen.dart';
+import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_screen_with_data.dart';
+import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_screen_with_returning_data.dart';
+import 'package:flutter_lab/features/navigation/presentation/screens/named_navigation/named_routes_navigation.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/navigation_main_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_first_part_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_main_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_second_part_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_third_part_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part1/align_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part1/buttons_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part1/center_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part1/column_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part1/container_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part1/expanded_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part1/padding_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part1/progress_indicators_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part1/row_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part1/scroll_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part1/sized_box_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part1/stack_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part1/text_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part3/example_1.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part3/example_2.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part3/example_3.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part3/example_4.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part3/example_5.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
+      name: ScreenNames.home,
       builder: (context, state) => const HomeScreen(),
       routes: [
+        // Widgets routes
         GoRoute(
           path: 'widgets',
           name: ScreenNames.widgets,
@@ -24,6 +50,74 @@ final router = GoRouter(
               path: 'widgets-first-part',
               name: ScreenNames.widgetsFirstPart,
               builder: (context, state) => const WidgetsFirstPartScreen(),
+              routes: [
+                GoRoute(
+                  path: 'container',
+                  name: ScreenNames.containerExample,
+                  builder: (context, state) => const ContainerExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'row',
+                  name: ScreenNames.rowExample,
+                  builder: (context, state) => const RowExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'column',
+                  name: ScreenNames.columnExample,
+                  builder: (context, state) => const ColumnExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'expanded',
+                  name: ScreenNames.expandedExample,
+                  builder: (context, state) => const ExpandedExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'stack',
+                  name: ScreenNames.stackExample,
+                  builder: (context, state) => const StackExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'sized-box',
+                  name: ScreenNames.sizedBoxExample,
+                  builder: (context, state) => const SizedBoxExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'padding',
+                  name: ScreenNames.paddingExample,
+                  builder: (context, state) => const PaddingExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'align',
+                  name: ScreenNames.alignExample,
+                  builder: (context, state) => const AlignExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'center',
+                  name: ScreenNames.centerExample,
+                  builder: (context, state) => const CenterExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'text',
+                  name: ScreenNames.textExample,
+                  builder: (context, state) => const TextExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'buttons',
+                  name: ScreenNames.buttonsExample,
+                  builder: (context, state) => const ButtonsExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'scroll',
+                  name: ScreenNames.scrollExample,
+                  builder: (context, state) => const ScrollExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'progress-indicators',
+                  name: ScreenNames.progressIndicatorsExample,
+                  builder: (context, state) =>
+                      const ProgressIndicatorsExampleScreen(),
+                ),
+              ],
             ),
             GoRoute(
               path: 'widgets-second-part',
@@ -34,6 +128,38 @@ final router = GoRouter(
               path: 'understanding-constraints',
               name: ScreenNames.understandingConstraints,
               builder: (context, state) => const WidgetsThirdPartScreen(),
+              routes: [
+                GoRoute(
+                  path: 'example-1',
+                  name: ScreenNames.understandingConstraintsExample1,
+                  builder: (context, state) =>
+                      const UnderstandingConstraintsExample1(),
+                ),
+                GoRoute(
+                  path: 'example-2',
+                  name: ScreenNames.understandingConstraintsExample2,
+                  builder: (context, state) =>
+                      const UnderstandingConstraintsExample2(),
+                ),
+                GoRoute(
+                  path: 'example-3',
+                  name: ScreenNames.understandingConstraintsExample3,
+                  builder: (context, state) =>
+                      const UnderstandingConstraintsExample3(),
+                ),
+                GoRoute(
+                  path: 'example-4',
+                  name: ScreenNames.understandingConstraintsExample4,
+                  builder: (context, state) =>
+                      const UnderstandingConstraintsExample4(),
+                ),
+                GoRoute(
+                  path: 'example-5',
+                  name: ScreenNames.understandingConstraintsExample5,
+                  builder: (context, state) =>
+                      const UnderstandingConstraintsExample5(),
+                ),
+              ],
             ),
             GoRoute(
               path: 'homework-13',
@@ -47,10 +173,60 @@ final router = GoRouter(
             ),
           ],
         ),
+        // Navigation routes
         GoRoute(
           path: 'navigation',
           name: ScreenNames.navigation,
           builder: (context, state) => const NavigationMainScreen(),
+          routes: [
+            GoRoute(
+              path: 'base-navigation',
+              name: ScreenNames.baseNavigation,
+              builder: (context, state) => const BaseNavigationSectionScreen(),
+              routes: [
+                GoRoute(
+                  path: 'simple-empty',
+                  name: ScreenNames.simpleEmptyScreen,
+                  builder: (context, state) => const SimpleEmptyScreen(),
+                ),
+                GoRoute(
+                  path: 'simple-empty-with-custom-transition',
+                  name: ScreenNames.simpleEmptyScreenWithCustomTransition,
+                  pageBuilder: (context, state) {
+                    return CustomTransitionPage(
+                      child: const SimpleEmptyScreen(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        return RotationTransition(
+                          turns: animation,
+                          child: child,
+                        );
+                      },
+                    );
+                  },
+                ),
+                GoRoute(
+                  path: 'simple-with-data/:id',
+                  name: ScreenNames.simpleTransitionWithPathParameters,
+                  builder: (context, state) => SimpleScreenWithData(
+                    id: state.pathParameters['id'] ?? '',
+                  ),
+                ),
+                GoRoute(
+                  path: 'simple-with-returning-data',
+                  name: ScreenNames.simpleScreenWithReturningData,
+                  builder: (context, state) => SimpleScreenWithReturningData(
+                    guestName: state.uri.queryParameters['guestName'] ?? '',
+                  ),
+                ),
+              ],
+            ),
+            GoRoute(
+              path: 'named-routes',
+              name: ScreenNames.namedRoutesNavigation,
+              builder: (context, state) => const NamedRoutesNavigationScreen(),
+            ),
+          ],
         ),
       ],
     ),
