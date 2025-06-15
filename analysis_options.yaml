@@ -85,4 +85,3 @@ linter:
     - avoid_js_rounded_ints
     - avoid_void_async
     - prefer_mixin
-    - unsafe_html
