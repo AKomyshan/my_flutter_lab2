@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/navigation_main_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_main_screen.dart';
+import 'package:go_router/go_router.dart';
 
 void main() {
   runApp(const FlutterWidgetsApp());
@@ -11,31 +12,27 @@ class FlutterWidgetsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      // routes: {
-      //   '/new_screen': (context) => const SimpleEmptyScreen(),
-      //   '/simple_screen_with_data': (context) {
-      //     return SimpleScreenWithData(
-      //       id: ModalRoute.of(context)!.settings.arguments! as String,
-      //     );
-      //   },
-      // },
-      // onGenerateRoute: (settings) {
-      //   if (settings.name == '/new_screen') {
-      //     return MaterialPageRoute(
-      //       builder: (context) => const SimpleEmptyScreen(),
-      //     );
-      //   }
-      //   if (settings.name == '/simple_screen_with_data') {
-      //     return MaterialPageRoute(
-      //       builder: (context) => SimpleScreenWithData(
-      //         id: settings.arguments! as String,
-      //       ),
-      //     );
-      //   }
-      //   return null;
-      // },
-      home: HomeScreen(),
+    final router = GoRouter(
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const HomeScreen(),
+          routes: [
+            GoRoute(
+              path: 'widgets',
+              builder: (context, state) => const WidgetsScreen(),
+            ),
+            GoRoute(
+              path: 'navigation',
+              builder: (context, state) => const NavigationMainScreen(),
+            ),
+          ],
+        ),
+      ],
+    );
+
+    return MaterialApp.router(
+      routerConfig: router,
     );
   }
 }
@@ -57,21 +54,11 @@ class HomeScreen extends StatelessWidget {
           children: [
             FeatureCard(
               title: 'Widgets',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => const WidgetsScreen(),
-                ),
-              ),
+              onTap: () => GoRouter.of(context).go('/widgets'),
             ),
             FeatureCard(
               title: 'Navigation',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => const NavigationMainScreen(),
-                ),
-              ),
+              onTap: () => GoRouter.of(context).go('/navigation'),
             ),
           ],
         ),
