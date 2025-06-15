@@ -145,8 +145,8 @@ class _GestureExampleScreenState extends State<GestureExampleScreen> {
                     color: Colors.white,
                     child: InkWell(
                       onTap: () {},
-                      splashColor: Colors.purple.withOpacity(0.3),
-                      highlightColor: Colors.purple.withOpacity(0.1),
+                      splashColor: Colors.purple.withAlpha(77),
+                      highlightColor: Colors.purple.withAlpha(26),
                       child: Container(
                         padding: const EdgeInsets.all(16.0),
                         child: const Text('Custom splash color'),
