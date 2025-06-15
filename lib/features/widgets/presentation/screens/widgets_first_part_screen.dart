@@ -25,71 +25,126 @@ class WidgetsFirstPartScreen extends StatelessWidget {
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
-        children: const [
+        children: [
           WidgetExampleCard(
             title: 'Container',
             description:
                 'Basic widget that allows you to create a box with a specified '
                 'size, color, and border radius.',
-            child: ContainerExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const ContainerExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Row',
             description:
                 'A widget that displays its children in a horizontal array.',
-            child: RowExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const RowExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Column',
             description:
                 'A widget that displays its children in a vertical array.',
-            child: ColumnExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const ColumnExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Expanded',
             description:
                 'A widget that expands a child of a Row, Column, or Flex to '
                 'fill the available space.',
-            child: ExpandedExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const ExpandedExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Stack',
             description:
                 'A widget that positions its childred on top of each other.',
-            child: StackExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const StackExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'SizedBox',
             description: 'A box with a specified size. Useful for creating '
                 'empty spaces.',
-            child: SizedBoxExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const SizedBoxExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Padding',
             description: 'A widget that insets its child by the given padding.',
-            child: PaddingExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const PaddingExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Align',
             description: 'A widget that aligns its child within itself.',
-            child: AlignExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const AlignExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Center',
             description: 'A widget that centers its child within itself.',
-            child: CenterExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const CenterExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Text',
             description: 'A run of text with a single style.',
-            child: TextExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const TextExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Buttons',
             description:
                 'Various types of buttons including Elevated, Text, Outlined, '
                 'Icon, and Floating Action buttons.',
-            child: ButtonsExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const ButtonsExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Scroll',
@@ -97,14 +152,24 @@ class WidgetsFirstPartScreen extends StatelessWidget {
                 'Examples of SingleChildScrollView and different types of '
                 'ListView including builder, separated, '
                 'and horizontal scrolling.',
-            child: ScrollExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const ScrollExampleScreen(),
+              ),
+            ),
           ),
           WidgetExampleCard(
             title: 'Progress Indicators',
             description:
                 'Linear and Circular progress indicators that show progress or '
                 'loading states.',
-            child: ProgressIndicatorsExampleScreen(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (context) => const ProgressIndicatorsExampleScreen(),
+              ),
+            ),
           ),
         ],
       ),
@@ -116,24 +181,19 @@ class WidgetExampleCard extends StatelessWidget {
   const WidgetExampleCard({
     required this.title,
     required this.description,
-    required this.child,
+    required this.onTap,
     super.key,
   });
   final String title;
   final String description;
-  final Widget child;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.only(bottom: 16.0),
       child: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute<Widget>(builder: (context) => child),
-          );
-        },
+        onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
