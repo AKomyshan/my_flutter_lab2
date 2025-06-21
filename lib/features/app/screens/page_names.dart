@@ -2,6 +2,7 @@ abstract class ScreenNames {
   static const home = 'home';
   static const widgets = 'widgets';
   static const navigation = 'navigation';
+  static const stateManagement = 'state-management';
   static const widgetsFirstPart = 'widgets-first-part';
   static const widgetsSecondPart = 'widgets-second-part';
   static const understandingConstraints = 'understanding-constraints';
@@ -42,6 +43,10 @@ abstract class ScreenNames {
       'simple-empty-with-custom-transition';
   static const simpleTransitionWithArguments =
       'simple-transition-with-arguments';
+
+  // State Management
+  static const simpleStateManagement = 'simple-state-management';
+
   // Understanding Constraints Examples
   static const understandingConstraintsExample1 =
       'understanding-constraints-example-1';

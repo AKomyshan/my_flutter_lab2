@@ -11,6 +11,17 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Flutter Lab'),
         backgroundColor: Colors.blue.shade100,
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 16),
+            child: Text(
+              '0',
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -23,7 +34,11 @@ class HomeScreen extends StatelessWidget {
             ),
             FeatureCard(
               title: 'Navigation',
-              onTap: () => context.goNamed(ScreenNames.navigation),
+              onTap: () => context.goNamed(ScreenNames.baseNavigation),
+            ),
+            FeatureCard(
+              title: 'State Management',
+              onTap: () => context.goNamed(ScreenNames.stateManagement),
             ),
           ],
         ),
