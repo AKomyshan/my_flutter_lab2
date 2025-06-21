@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/app/screens/page_names.dart';
+import 'package:flutter_lab/features/state_managment/simple_example.dart/providers/counter_provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,12 +13,12 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Flutter Lab'),
         backgroundColor: Colors.blue.shade100,
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.only(right: 16),
             child: Text(
-              '0',
-              style: TextStyle(
+              '${context.watch<CounterProvider>().counter}',
+              style: const TextStyle(
                 fontSize: 20,
               ),
             ),

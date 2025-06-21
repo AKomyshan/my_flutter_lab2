@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/app/screens/page_names.dart';
+import 'package:flutter_lab/features/state_managment/simple_example.dart/providers/counter_provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class CounterScreen extends StatefulWidget {
   const CounterScreen({super.key});
@@ -10,24 +12,16 @@ class CounterScreen extends StatefulWidget {
 }
 
 class _CounterScreenState extends State<CounterScreen> {
-  int _counter = 0;
-
   void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    context.read<CounterProvider>().increment();
   }
 
   void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
+    context.read<CounterProvider>().decrement();
   }
 
   void _resetCounter() {
-    setState(() {
-      _counter = 0;
-    });
+    context.read<CounterProvider>().reset();
   }
 
   @override
@@ -63,13 +57,17 @@ class _CounterScreenState extends State<CounterScreen> {
                   ),
                 ],
               ),
-              child: Text(
-                '$_counter',
-                style: const TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF2196F3),
-                ),
+              child: Consumer<CounterProvider>(
+                builder: (context, counterProvider, child) {
+                  return Text(
+                    '${counterProvider.counter}',
+                    style: const TextStyle(
+                      fontSize: 48,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF2196F3),
+                    ),
+                  );
+                },
               ),
             ),
 
