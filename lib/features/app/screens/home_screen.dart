@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/app/screens/page_names.dart';
+import 'package:flutter_lab/features/state_managment/bloc_couter_example/bloc/counter_bloc.dart';
 import 'package:flutter_lab/features/state_managment/simple_example.dart/providers/counter_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -16,11 +17,22 @@ class HomeScreen extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16),
-            child: Text(
-              '${context.watch<CounterProvider>().counter}',
-              style: const TextStyle(
-                fontSize: 20,
-              ),
+            child: Row(
+              children: [
+                Text(
+                  '${context.watch<CounterBloc>().state.counter}',
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Text(
+                  '${context.watch<CounterProvider>().counter}',
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

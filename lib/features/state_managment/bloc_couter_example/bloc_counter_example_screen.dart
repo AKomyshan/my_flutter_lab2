@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_lab/features/state_managment/bloc_couter_example/bloc/counter_bloc.dart';
+import 'package:flutter_lab/features/state_managment/bloc_couter_example/bloc/counter_event.dart';
+import 'package:flutter_lab/features/state_managment/bloc_couter_example/bloc/counter_state.dart';
 
 class BlocCounterExampleScreen extends StatefulWidget {
   const BlocCounterExampleScreen({
@@ -11,18 +15,12 @@ class BlocCounterExampleScreen extends StatefulWidget {
 }
 
 class _BlocCounterExampleScreenState extends State<BlocCounterExampleScreen> {
-  int _counter = 0;
-
   void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    context.read<CounterBloc>().add(CounterIncrementEvent());
   }
 
   void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
+    context.read<CounterBloc>().add(CounterDecrementEvent());
   }
 
   @override
@@ -37,9 +35,13 @@ class _BlocCounterExampleScreenState extends State<BlocCounterExampleScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            BlocBuilder<CounterBloc, CounterState>(
+              builder: (context, state) {
+                return Text(
+                  '${state.counter}',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                );
+              },
             ),
           ],
         ),
