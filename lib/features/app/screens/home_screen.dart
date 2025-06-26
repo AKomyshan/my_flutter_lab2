@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/app/screens/page_names.dart';
 import 'package:flutter_lab/features/state_managment/bloc_couter_example/bloc/counter_bloc.dart';
+import 'package:flutter_lab/features/state_managment/cubit_counter_example/cubit/counter_cubit.dart';
 import 'package:flutter_lab/features/state_managment/simple_example.dart/providers/counter_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -15,25 +16,9 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Flutter Lab'),
         backgroundColor: Colors.blue.shade100,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Row(
-              children: [
-                Text(
-                  '${context.watch<CounterBloc>().state.counter}',
-                  style: const TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Text(
-                  '${context.watch<CounterProvider>().counter}',
-                  style: const TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-              ],
-            ),
+          IconButton(
+            onPressed: () => _showDialog(context),
+            icon: const Icon(Icons.numbers),
           ),
         ],
       ),
@@ -59,6 +44,77 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+void _showDialog(BuildContext context) {
+  showDialog<void>(
+    context: context,
+    builder: (context) {
+      return Dialog(
+        child: SizedBox(
+          width: 200,
+          height: 200,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Counter Bloc: ',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                  Text(
+                    '${context.watch<CounterBloc>().state.counter}',
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Counter Provider: ',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                  Text(
+                    '${context.watch<CounterProvider>().counter}',
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Counter Cubit: ',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                  Text(
+                    '${context.watch<CounterCubit>().state.counter}',
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }
 
 class FeatureCard extends StatelessWidget {

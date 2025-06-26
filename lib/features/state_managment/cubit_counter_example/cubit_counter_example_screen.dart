@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_lab/features/state_managment/cubit_counter_example/cubit/counter_cubit.dart';
+import 'package:flutter_lab/features/state_managment/cubit_counter_example/cubit/couter_state.dart';
 
 class CubitCounterExampleScreen extends StatefulWidget {
   const CubitCounterExampleScreen({
@@ -11,25 +14,19 @@ class CubitCounterExampleScreen extends StatefulWidget {
 }
 
 class _CubitCounterExampleScreenState extends State<CubitCounterExampleScreen> {
-  int _counter = 0;
-
   void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    context.read<CounterCubit>().increment();
   }
 
   void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
+    context.read<CounterCubit>().decrement();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BLoC Counter Example'),
+        title: const Text('Cubit Counter Example'),
         backgroundColor: Colors.green.shade100,
       ),
       body: Center(
@@ -37,9 +34,13 @@ class _CubitCounterExampleScreenState extends State<CubitCounterExampleScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            BlocBuilder<CounterCubit, CounterCubitState>(
+              builder: (context, state) {
+                return Text(
+                  '${state.counter}',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                );
+              },
             ),
           ],
         ),
