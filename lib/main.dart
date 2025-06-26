@@ -23,6 +23,9 @@ class FlutterWidgetsApp extends StatelessWidget {
         BlocProvider(
           create: (context) => CounterCubit(),
         ),
+        BlocProvider(
+          create: (context) => CounterBloc(),
+        ),
       ],
       child: ChangeNotifierProvider(
         create: (context) => CounterProvider(),
