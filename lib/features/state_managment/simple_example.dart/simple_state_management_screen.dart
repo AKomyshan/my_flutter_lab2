@@ -4,6 +4,21 @@ import 'package:flutter_lab/features/state_managment/simple_example.dart/provide
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+class SimpleStateManagementScreen extends StatelessWidget {
+  const SimpleStateManagementScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Simple State Management'),
+        backgroundColor: Colors.green.shade100,
+      ),
+      body: const CounterScreen(),
+    );
+  }
+}
+
 class CounterScreen extends StatefulWidget {
   const CounterScreen({super.key});
 
@@ -32,7 +47,6 @@ class _CounterScreenState extends State<CounterScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Заголовок
             const Text(
               'Simple Counter',
               style: TextStyle(
@@ -41,9 +55,7 @@ class _CounterScreenState extends State<CounterScreen> {
                 color: Color(0xFF333333),
               ),
             ),
-
             const SizedBox(height: 40),
-
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
@@ -70,9 +82,7 @@ class _CounterScreenState extends State<CounterScreen> {
                 },
               ),
             ),
-
             const SizedBox(height: 40),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -96,9 +106,7 @@ class _CounterScreenState extends State<CounterScreen> {
                 ),
               ],
             ),
-
             const SizedBox(height: 40),
-
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,

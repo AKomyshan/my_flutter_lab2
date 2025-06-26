@@ -9,7 +9,7 @@ import 'package:flutter_lab/features/navigation/presentation/screens/base_naviga
 import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_screen_with_returning_data.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/named_navigation/named_routes_navigation.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/navigation_main_screen.dart';
-import 'package:flutter_lab/features/state_managment/simple_state_management_screen.dart';
+import 'package:flutter_lab/features/state_managment/simple_example.dart/simple_state_management_screen.dart';
 import 'package:flutter_lab/features/state_managment/state_management_main_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_first_part_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_main_screen.dart';
