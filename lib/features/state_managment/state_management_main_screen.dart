@@ -26,6 +26,10 @@ class StateManagementMainScreen extends StatelessWidget {
               title: 'BLoC Counter Example',
               onTap: () => context.goNamed(ScreenNames.blocCounterExample),
             ),
+            FeatureCard(
+              title: 'Cubit Counter Example',
+              onTap: () => context.goNamed(ScreenNames.cubitCounterExample),
+            ),
           ],
         ),
       ),
