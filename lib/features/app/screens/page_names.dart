@@ -46,6 +46,7 @@ abstract class ScreenNames {
 
   // State Management
   static const simpleStateManagement = 'simple-state-management';
+  static const blocCounterExample = 'bloc-counter-example';
 
   // Understanding Constraints Examples
   static const understandingConstraintsExample1 =
