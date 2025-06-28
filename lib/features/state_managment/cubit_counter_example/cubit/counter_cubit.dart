@@ -11,4 +11,8 @@ class CounterCubit extends Cubit<CounterCubitState> {
   void decrement() {
     emit(state.copyWith(counter: state.counter - 1));
   }
+
+  void setFavoriteNumber() {
+    emit(state.copyWith(favoriteNumber: state.counter));
+  }
 }

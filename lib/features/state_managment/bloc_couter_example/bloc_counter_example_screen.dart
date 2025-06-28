@@ -35,7 +35,20 @@ class _BlocCounterExampleScreenState extends State<BlocCounterExampleScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('You have pushed the button this many times:'),
-            BlocBuilder<CounterBloc, CounterState>(
+            BlocConsumer<CounterBloc, CounterState>(
+              listener: (context, state) {
+                if (state.counter == 10) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'You have pushed the button this many times: 10',
+                      ),
+                    ),
+                  );
+                  return;
+                }
+                ScaffoldMessenger.of(context).clearSnackBars();
+              },
               builder: (context, state) {
                 return Text(
                   '${state.counter}',

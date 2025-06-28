@@ -109,6 +109,19 @@ void _showDialog(BuildContext context) {
                   ),
                 ],
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Favorite Number: ',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    '${context.watch<CounterCubit>().state.favoriteNumber}',
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

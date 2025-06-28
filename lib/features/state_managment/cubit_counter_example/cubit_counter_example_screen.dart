@@ -34,13 +34,22 @@ class _CubitCounterExampleScreenState extends State<CubitCounterExampleScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('You have pushed the button this many times:'),
-            BlocBuilder<CounterCubit, CounterCubitState>(
-              builder: (context, state) {
+            BlocSelector<CounterCubit, CounterCubitState, int>(
+              selector: (state) => state.counter,
+              builder: (context, counter) {
                 return Text(
-                  '${state.counter}',
+                  '$counter',
                   style: Theme.of(context).textTheme.headlineMedium,
                 );
               },
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.white,
+              ),
+              onPressed: () => context.read<CounterCubit>().setFavoriteNumber(),
+              child: const Text('Set this number as favorite'),
             ),
           ],
         ),
