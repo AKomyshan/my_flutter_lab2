@@ -10,6 +10,7 @@ import 'package:flutter_lab/features/navigation/presentation/screens/base_naviga
 import 'package:flutter_lab/features/navigation/presentation/screens/named_navigation/named_routes_navigation.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/navigation_main_screen.dart';
 import 'package:flutter_lab/features/state_managment/bloc_couter_example/bloc_counter_example_screen.dart';
+import 'package:flutter_lab/features/state_managment/common_mistakes_screen.dart';
 import 'package:flutter_lab/features/state_managment/cubit_counter_example/cubit_counter_example_screen.dart';
 import 'package:flutter_lab/features/state_managment/simple_example.dart/simple_state_management_screen.dart';
 import 'package:flutter_lab/features/state_managment/state_management_main_screen.dart';
@@ -297,6 +298,11 @@ final router = GoRouter(
               path: 'cubit-counter-example',
               name: ScreenNames.cubitCounterExample,
               builder: (context, state) => const CubitCounterExampleScreen(),
+            ),
+            GoRoute(
+              path: 'common-mistakes',
+              name: ScreenNames.commonMistakes,
+              builder: (context, state) => const CommonMistakesScreen(),
             ),
           ],
         ),

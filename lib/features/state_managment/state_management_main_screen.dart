@@ -30,6 +30,10 @@ class StateManagementMainScreen extends StatelessWidget {
               title: 'Cubit Counter Example',
               onTap: () => context.goNamed(ScreenNames.cubitCounterExample),
             ),
+            FeatureCard(
+              title: 'Common Mistakes',
+              onTap: () => context.goNamed(ScreenNames.commonMistakes),
+            ),
           ],
         ),
       ),
