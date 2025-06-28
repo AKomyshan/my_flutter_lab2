@@ -8,6 +8,7 @@ abstract class ScreenNames {
   static const understandingConstraints = 'understanding-constraints';
   static const homework13 = 'homework-13';
   static const homework14 = 'homework-14';
+  static const homework20 = 'homework-20';
 
   // Widget examples
   static const containerExample = 'container';
