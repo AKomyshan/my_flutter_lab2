@@ -55,6 +55,7 @@ abstract class ScreenNames {
   static const animations = 'animations';
   static const implicitAnimations = 'implicit-animations';
   static const explicitAnimations = 'explicit-animations';
+  static const animatedBoxPlayground = 'animated-box-playground';
 
   // Understanding Constraints Examples
   static const understandingConstraintsExample1 =

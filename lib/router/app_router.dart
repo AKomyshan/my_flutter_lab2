@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/explicit_animations_screen.dart';
+import 'package:flutter_lab/features/animations/presentation/implicit_animations/animated_box_playground.dart';
 import 'package:flutter_lab/features/animations/presentation/implicit_animations/implicit_animations_screen.dart';
 import 'package:flutter_lab/features/animations/presentation/screens/animations_main_screen.dart';
 import 'package:flutter_lab/features/app/screens/home_screen.dart';
@@ -325,6 +326,11 @@ final router = GoRouter(
               path: 'implicit-animations',
               name: ScreenNames.implicitAnimations,
               builder: (context, state) => const ImplicitAnimationsScreen(),
+            ),
+            GoRoute(
+              path: 'animated-box-playground',
+              name: ScreenNames.animatedBoxPlayground,
+              builder: (context, state) => const AnimatedBoxPlayground(),
             ),
             GoRoute(
               path: 'explicit-animations',
