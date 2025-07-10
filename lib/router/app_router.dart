@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/features/animations/presentation/explicit_animations/explicit_animations_screen.dart';
+import 'package:flutter_lab/features/animations/presentation/implicit_animations/implicit_animations_screen.dart';
+import 'package:flutter_lab/features/animations/presentation/screens/animations_main_screen.dart';
 import 'package:flutter_lab/features/app/screens/home_screen.dart';
 import 'package:flutter_lab/features/app/screens/page_names.dart';
 import 'package:flutter_lab/features/homeworks/lesson_13/homework_13_screen.dart';
@@ -309,6 +312,24 @@ final router = GoRouter(
               path: 'homework-20',
               name: ScreenNames.homework20,
               builder: (context, state) => const RateAppScreen(),
+            ),
+          ],
+        ),
+        // Animations routes
+        GoRoute(
+          path: 'animations',
+          name: ScreenNames.animations,
+          builder: (context, state) => const AnimationsMainScreen(),
+          routes: [
+            GoRoute(
+              path: 'implicit-animations',
+              name: ScreenNames.implicitAnimations,
+              builder: (context, state) => const ImplicitAnimationsScreen(),
+            ),
+            GoRoute(
+              path: 'explicit-animations',
+              name: ScreenNames.explicitAnimations,
+              builder: (context, state) => const ExplicitAnimationsScreen(),
             ),
           ],
         ),

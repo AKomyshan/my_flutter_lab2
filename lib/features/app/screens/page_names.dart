@@ -51,6 +51,11 @@ abstract class ScreenNames {
   static const cubitCounterExample = 'cubit-counter-example';
   static const commonMistakes = 'common-mistakes';
 
+  // Animations
+  static const animations = 'animations';
+  static const implicitAnimations = 'implicit-animations';
+  static const explicitAnimations = 'explicit-animations';
+
   // Understanding Constraints Examples
   static const understandingConstraintsExample1 =
       'understanding-constraints-example-1';
