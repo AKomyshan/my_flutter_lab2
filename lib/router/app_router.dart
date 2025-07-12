@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animation_controller.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/explicit_animations_screen.dart';
 import 'package:flutter_lab/features/animations/presentation/implicit_animations/animated_box_playground.dart';
 import 'package:flutter_lab/features/animations/presentation/implicit_animations/examples/animated_align_example.dart';
@@ -382,6 +383,14 @@ final router = GoRouter(
               path: 'explicit-animations',
               name: ScreenNames.explicitAnimations,
               builder: (context, state) => const ExplicitAnimationsScreen(),
+              routes: [
+                GoRoute(
+                  path: 'animation-controller-example',
+                  name: ScreenNames.animationControllerExample,
+                  builder: (context, state) =>
+                      const AnimationControllerExample(),
+                ),
+              ],
             ),
           ],
         ),
