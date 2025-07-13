@@ -57,6 +57,15 @@ abstract class ScreenNames {
   static const explicitAnimations = 'explicit-animations';
   static const animatedBoxPlayground = 'animated-box-playground';
 
+  // Implicit Animation Examples
+  static const animatedContainerExample = 'animated-container-example';
+  static const animatedOpacityExample = 'animated-opacity-example';
+  static const animatedAlignExample = 'animated-align-example';
+  static const animatedPaddingExample = 'animated-padding-example';
+  static const animatedPositionedExample = 'animated-positioned-example';
+  static const animatedSwitcherExample = 'animated-switcher-example';
+  static const tweenAnimationBuilderExample = 'tween-animation-builder-example';
+
   // Understanding Constraints Examples
   static const understandingConstraintsExample1 =
       'understanding-constraints-example-1';
