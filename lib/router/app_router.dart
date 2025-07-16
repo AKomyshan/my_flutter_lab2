@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animated_buider.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animation_controller.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/tweens_and_animations.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/explicit_animations_screen.dart';
@@ -395,6 +396,11 @@ final router = GoRouter(
                   path: 'tween-and-animation-example',
                   name: ScreenNames.tweenAndAnimationExample,
                   builder: (context, state) => const TweenAndAnimationExample(),
+                ),
+                GoRoute(
+                  path: 'animated-builder-example',
+                  name: ScreenNames.animatedBuilderExample,
+                  builder: (context, state) => const AnimatedBuilderExample(),
                 ),
               ],
             ),

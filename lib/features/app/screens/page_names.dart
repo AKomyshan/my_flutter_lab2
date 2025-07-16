@@ -58,6 +58,7 @@ abstract class ScreenNames {
   static const animatedBoxPlayground = 'animated-box-playground';
   static const animationControllerExample = 'animation-controller-example';
   static const tweenAndAnimationExample = 'tween-and-animation-example';
+  static const animatedBuilderExample = 'animated-builder-example';
   // Implicit Animation Examples
   static const animatedContainerExample = 'animated-container-example';
   static const animatedOpacityExample = 'animated-opacity-example';
