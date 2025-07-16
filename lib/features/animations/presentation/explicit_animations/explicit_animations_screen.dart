@@ -49,6 +49,11 @@ class ExplicitAnimationsScreen extends StatelessWidget {
               title: 'AnimatedBuilder',
               onTap: () => context.goNamed(ScreenNames.animatedBuilderExample),
             ),
+            const SizedBox(height: 12),
+            FeatureCard(
+              title: 'Built-in Explicit Animations',
+              onTap: () => context.goNamed(ScreenNames.fadeTransitionExample),
+            ),
           ],
         ),
       ),

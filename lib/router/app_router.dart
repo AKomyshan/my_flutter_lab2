@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animated_buider.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animation_controller.dart';
+import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/build_in_transitions.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/tweens_and_animations.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/explicit_animations_screen.dart';
 import 'package:flutter_lab/features/animations/presentation/implicit_animations/animated_box_playground.dart';
@@ -401,6 +402,11 @@ final router = GoRouter(
                   path: 'animated-builder-example',
                   name: ScreenNames.animatedBuilderExample,
                   builder: (context, state) => const AnimatedBuilderExample(),
+                ),
+                GoRoute(
+                  path: 'fade-transition-example',
+                  name: ScreenNames.fadeTransitionExample,
+                  builder: (context, state) => const BuildInTransitionExample(),
                 ),
               ],
             ),
