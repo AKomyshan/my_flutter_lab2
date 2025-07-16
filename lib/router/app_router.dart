@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animation_controller.dart';
+import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/tweens_and_animations.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/explicit_animations_screen.dart';
 import 'package:flutter_lab/features/animations/presentation/implicit_animations/animated_box_playground.dart';
 import 'package:flutter_lab/features/animations/presentation/implicit_animations/examples/animated_align_example.dart';
@@ -389,6 +390,11 @@ final router = GoRouter(
                   name: ScreenNames.animationControllerExample,
                   builder: (context, state) =>
                       const AnimationControllerExample(),
+                ),
+                GoRoute(
+                  path: 'tween-and-animation-example',
+                  name: ScreenNames.tweenAndAnimationExample,
+                  builder: (context, state) => const TweenAndAnimationExample(),
                 ),
               ],
             ),

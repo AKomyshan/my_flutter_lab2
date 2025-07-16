@@ -38,6 +38,12 @@ class ExplicitAnimationsScreen extends StatelessWidget {
               onTap: () =>
                   context.goNamed(ScreenNames.animationControllerExample),
             ),
+            const SizedBox(height: 12),
+            FeatureCard(
+              title: 'Tween + Animation',
+              onTap: () =>
+                  context.goNamed(ScreenNames.tweenAndAnimationExample),
+            ),
           ],
         ),
       ),
