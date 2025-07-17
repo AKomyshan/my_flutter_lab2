@@ -19,6 +19,7 @@ import 'package:flutter_lab/features/app/screens/page_names.dart';
 import 'package:flutter_lab/features/homeworks/lesson_13/homework_13_screen.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/homework_14_screen.dart';
 import 'package:flutter_lab/features/homeworks/lesson_20_rate_app_feature/presentation/screens/rate_app_screen.dart';
+import 'package:flutter_lab/features/homeworks/lesson_22_explicit_animations/homework_animations_screen.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/base_navigation_section_screen.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_empty_screen.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_screen_with_data.dart';
@@ -409,6 +410,11 @@ final router = GoRouter(
                   builder: (context, state) => const BuildInTransitionExample(),
                 ),
               ],
+            ),
+            GoRoute(
+              path: 'homework-animations',
+              name: ScreenNames.homeworkAnimations,
+              builder: (context, state) => const Homework22Screen(),
             ),
           ],
         ),

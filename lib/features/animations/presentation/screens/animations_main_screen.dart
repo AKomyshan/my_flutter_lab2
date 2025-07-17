@@ -24,6 +24,7 @@ class AnimationsMainScreen extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          spacing: 16,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             NavigationCard(
@@ -32,12 +33,16 @@ class AnimationsMainScreen extends StatelessWidget {
                   'and other implicit animation widgets',
               onTap: () => context.goNamed(ScreenNames.implicitAnimations),
             ),
-            const SizedBox(height: 16),
             NavigationCard(
               title: 'Explicit Animations',
               description: 'Learn about AnimationController, AnimationBuilder, '
                   'and custom animations',
               onTap: () => context.goNamed(ScreenNames.explicitAnimations),
+            ),
+            NavigationCard(
+              title: 'Homework Animations',
+              description: 'Homework_22',
+              onTap: () => context.goNamed(ScreenNames.homeworkAnimations),
             ),
           ],
         ),
