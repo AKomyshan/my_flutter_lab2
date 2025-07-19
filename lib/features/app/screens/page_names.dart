@@ -70,6 +70,10 @@ abstract class ScreenNames {
   static const animatedSwitcherExample = 'animated-switcher-example';
   static const tweenAnimationBuilderExample = 'tween-animation-builder-example';
 
+  // Error Handling
+  static const errorHandling = 'error-handling';
+  static const productsPageExample = 'products-page-example';
+
   // Understanding Constraints Examples
   static const understandingConstraintsExample1 =
       'understanding-constraints-example-1';

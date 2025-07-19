@@ -11,14 +11,20 @@ class _TextFieldExampleScreenState extends State<TextFieldExampleScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _phoneController = TextEditingController();
+  final _phoneController = TextEditingController(text: 'asdasdas');
+  final _contr = TextEditingController(text: 'asdasdas');
+
+  final _focusNode = FocusNode();
   bool _obscurePassword = true;
+  String? _errorText;
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     _phoneController.dispose();
+    _contr.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -55,12 +61,24 @@ class _TextFieldExampleScreenState extends State<TextFieldExampleScreen> {
                   const Text('Basic TextField'),
                   const SizedBox(height: 8),
                   TextField(
+                    controller: _contr,
                     decoration: InputDecoration(
                       labelText: 'Enter text',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
+                      errorText: _errorText,
                     ),
+                    onChanged: (value) {
+                      setState(() {
+                        if (value.length > 5) {
+                          _errorText = 'Error';
+                        } else {
+                          _errorText = null;
+                        }
+                      });
+                    },
+                    onTapOutside: (event) {},
                   ),
                   const SizedBox(height: 16),
 
@@ -82,6 +100,7 @@ class _TextFieldExampleScreenState extends State<TextFieldExampleScreen> {
                   const Text('TextField with Helper Text'),
                   const SizedBox(height: 8),
                   TextField(
+                    focusNode: _focusNode,
                     decoration: InputDecoration(
                       labelText: 'Username',
                       helperText: 'Enter your username',
@@ -115,7 +134,16 @@ class _TextFieldExampleScreenState extends State<TextFieldExampleScreen> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    // Email Field
+                    // Email Fie
+
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white,
+                      ),
+                      child: const Text('Submit'),
+                    ),
                     TextFormField(
                       controller: _emailController,
                       decoration: InputDecoration(

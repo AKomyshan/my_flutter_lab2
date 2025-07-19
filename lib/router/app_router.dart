@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animated_buider.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animation_controller.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/build_in_transitions.dart';
@@ -16,6 +17,9 @@ import 'package:flutter_lab/features/animations/presentation/implicit_animations
 import 'package:flutter_lab/features/animations/presentation/screens/animations_main_screen.dart';
 import 'package:flutter_lab/features/app/screens/home_screen.dart';
 import 'package:flutter_lab/features/app/screens/page_names.dart';
+import 'package:flutter_lab/features/error_handling/presentation/cubit/products_cubit.dart';
+import 'package:flutter_lab/features/error_handling/presentation/screens/error_handling_main_screen.dart';
+import 'package:flutter_lab/features/error_handling/presentation/screens/products_page_example.dart';
 import 'package:flutter_lab/features/homeworks/lesson_13/homework_13_screen.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/homework_14_screen.dart';
 import 'package:flutter_lab/features/homeworks/lesson_20_rate_app_feature/presentation/screens/rate_app_screen.dart';
@@ -415,6 +419,22 @@ final router = GoRouter(
               path: 'homework-animations',
               name: ScreenNames.homeworkAnimations,
               builder: (context, state) => const Homework22Screen(),
+            ),
+          ],
+        ),
+        // Error Handling routes
+        GoRoute(
+          path: 'error-handling',
+          name: ScreenNames.errorHandling,
+          builder: (context, state) => const ErrorHandlingMainScreen(),
+          routes: [
+            GoRoute(
+              path: 'products-page-example',
+              name: ScreenNames.productsPageExample,
+              builder: (context, state) => BlocProvider(
+                create: (context) => ProductsCubit()..getProducts(),
+                child: const ProductsPageExample(),
+              ),
             ),
           ],
         ),
