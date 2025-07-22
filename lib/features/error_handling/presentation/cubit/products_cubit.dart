@@ -3,7 +3,9 @@ import 'package:flutter_lab/features/error_handling/domain/fake_products_reposit
 import 'package:flutter_lab/features/error_handling/presentation/cubit/products_state.dart';
 
 class ProductsCubit extends Cubit<ProductsState> {
-  ProductsCubit() : super(const ProductsState.initial());
+  ProductsCubit(this.repository) : super(const ProductsState.initial());
+
+  final FakeProductsRepository repository;
 
   Future<void> getProducts() async {
     try {

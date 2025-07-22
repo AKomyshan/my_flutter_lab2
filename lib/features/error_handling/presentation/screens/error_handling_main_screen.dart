@@ -24,6 +24,11 @@ class ErrorHandlingMainScreen extends StatelessWidget {
                   'loading states, error states, and success states',
               onTap: () => context.goNamed(ScreenNames.productsPageExample),
             ),
+            NavigationCard(
+              title: 'Homework 23: \nError Handling',
+              description: 'User profile page with error handling',
+              onTap: () => context.goNamed(ScreenNames.homework23ErrorHandling),
+            ),
           ],
         ),
       ),

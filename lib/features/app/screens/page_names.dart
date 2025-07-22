@@ -10,6 +10,7 @@ abstract class ScreenNames {
   static const homework14 = 'homework-14';
   static const homeworkAnimations = 'homework-animations';
   static const homework20 = 'homework-20';
+  static const homework23ErrorHandling = 'homework-23-error-handling';
 
   // Widget examples
   static const containerExample = 'container';
