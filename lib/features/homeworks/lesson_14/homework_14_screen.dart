@@ -10,12 +10,12 @@ class Homework14Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(backgroundColor),
+      backgroundColor: const Color(backgroundColor),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const FeedbackScreenTitle(),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(
