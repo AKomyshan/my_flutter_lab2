@@ -17,7 +17,9 @@ class CustomCard extends StatelessWidget {
   final double radius;
 
   // I use this property to avoid breaking the logic of appBar
-  // and to not bother with SafeArea
+  // and to not bother with SafeArea.
+  // I would even suggest that this property should not exist at all...
+  // But design...
   final bool squaredTop;
   final Color backgroundColor;
   final double boxShadowAlpha;
