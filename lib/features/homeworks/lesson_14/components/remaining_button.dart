@@ -14,7 +14,7 @@ class RemainingButton extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white.withAlpha(230),
+            color: Colors.white.withAlpha(210),
           ),
           child: Center(
             child: Padding(
