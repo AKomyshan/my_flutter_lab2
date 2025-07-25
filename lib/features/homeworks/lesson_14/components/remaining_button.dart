@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/features/homeworks/lesson_14/theme.dart';
 
 class RemainingButton extends StatelessWidget {
   const RemainingButton({required this.onPressed, super.key});
@@ -14,7 +15,7 @@ class RemainingButton extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white.withAlpha(210),
+            color: Colors.white.withAlpha(192),
           ),
           child: Center(
             child: Padding(
@@ -34,14 +35,9 @@ class RemainingButton extends StatelessWidget {
                   ),
                   elevation: 0,
                 ),
-                child: const Text(
+                child: Text(
                   'Надіслати',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontFamily: 'SilpoText',
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: semiBoldTextStyle(20).copyWith(color: Colors.white),
                 ),
               ),
             ),

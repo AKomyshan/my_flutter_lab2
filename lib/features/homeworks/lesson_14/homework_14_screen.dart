@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/components/index.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/dtos/feedback_dto.dart';
+import 'package:flutter_lab/features/homeworks/lesson_14/extensions/widget_extensions.dart';
+import 'package:flutter_lab/features/homeworks/lesson_14/get_criteria.dart';
+import 'package:flutter_lab/features/homeworks/lesson_14/theme.dart';
 import 'package:logger/logger.dart';
 
 const int backgroundColor = 0xffEEF2FC;
-const double defaultSpacing = 8.0;
 final logger = Logger();
 
 class Homework14Screen extends StatefulWidget {
@@ -15,7 +17,8 @@ class Homework14Screen extends StatefulWidget {
 }
 
 class _Homework14ScreenState extends State<Homework14Screen> {
-  final request = FeedbackDto();
+  final _request = FeedbackDto();
+  final Future<Map<int, CriteriaDto>> _criteriaFuture = getCriteria();
 
   @override
   Widget build(BuildContext context) {
@@ -23,59 +26,42 @@ class _Homework14ScreenState extends State<Homework14Screen> {
       backgroundColor: const Color(backgroundColor),
       extendBodyBehindAppBar: true,
       appBar: CustomAppBar(),
-      body: Stack(
-        children: [
-          CustomScrollView(
-            slivers: [
-              SliverList(
-                delegate: SliverChildListDelegate(
-                  [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        // to be sure that 'pull to refresh' case won't break
-                        // the app bar and the first widget
-                        top: kToolbarHeight +
-                            MediaQuery.of(context).padding.top -
-                            10,
-                      ),
-                      child: Column(
-                        spacing: defaultSpacing,
-                        children: [
-                          CustomCard(
-                            squaredTop: true,
-                            child: Rating(
-                              onChange: (rating) =>
-                                  setState(() => request.rating = rating),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            child: const Text(
-                              'Яку оціночку поставите відділам?',
-                              style: TextStyle(
-                                fontFamily: 'SilpoText',
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
-                          CustomCard(child: SegmentalFeedback()),
-                          CustomCard(child: SegmentalFeedback()),
-                        ],
-                      ),
-                    ),
-                  ],
+      body: FutureBuilder<Map<int, CriteriaDto>>(
+        future: _criteriaFuture,
+        builder: (_, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return SliverStackView(
+            spacing: 8,
+            remaining: RemainingButton(onPressed: () => logger.d(_request)),
+            children: [
+              CustomCard(
+                squaredTop: true,
+                child: Rating(
+                  onChange: (rating) =>
+                      setState(() => _request.rating = rating),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Text(
+                  'Яку оціночку поставите відділам?',
+                  style: semiBoldTextStyle(18),
+                ),
+              ),
+              ...snapshot.data!.entries.map(
+                (entry) => CustomCard(
+                  child: SegmentalFeedback(
+                    title: entry.value.title,
+                    criterias: entry.value.criterias,
+                  ).fullWidth(),
                 ),
               ),
             ],
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: RemainingButton(onPressed: () => logger.d(request)),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
