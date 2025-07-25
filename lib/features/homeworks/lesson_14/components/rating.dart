@@ -27,8 +27,9 @@ class _RatingState extends State<Rating> {
 
   @override
   Widget build(BuildContext context) {
+    final isSmScreen = MediaQuery.of(context).size.width <= 360;
     return Row(
-      spacing: 8,
+      spacing: isSmScreen ? 0 : 8,
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         5,
@@ -55,7 +56,7 @@ class _RatingState extends State<Rating> {
                 fit: BoxFit.contain,
                 colorFilter: isFilled
                     ? null
-                    : ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+                    : ColorFilter.mode(Colors.grey.shade400, BlendMode.srcIn),
               ),
             ),
           );

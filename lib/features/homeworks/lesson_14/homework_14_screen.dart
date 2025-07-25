@@ -48,6 +48,17 @@ class _Homework14ScreenState extends State<Homework14Screen> {
                                   setState(() => request.rating = rating),
                             ),
                           ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            child: const Text(
+                              'Яку оціночку поставите відділам?',
+                              style: TextStyle(
+                                fontFamily: 'SilpoText',
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
                           CustomCard(child: SegmentalFeedback()),
                           CustomCard(child: SegmentalFeedback()),
                         ],
