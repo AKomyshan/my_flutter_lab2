@@ -14,6 +14,17 @@ class WidgetbookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Widgetbook.material(directories: directories);
+    return Widgetbook.material(
+      directories: directories,
+      addons: [
+        ViewportAddon(Viewports.all),
+        InspectorAddon(),
+        DeviceFrameAddon(devices: Devices.all),
+        BuilderAddon(
+          name: 'Safe area',
+          builder: (context, child) => SafeArea(child: child),
+        ),
+      ],
+    );
   }
 }
