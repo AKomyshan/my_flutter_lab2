@@ -20,10 +20,6 @@ class WidgetbookApp extends StatelessWidget {
         ViewportAddon(Viewports.all),
         InspectorAddon(),
         DeviceFrameAddon(devices: Devices.all),
-        BuilderAddon(
-          name: 'Safe area',
-          builder: (context, child) => SafeArea(child: child),
-        ),
       ],
     );
   }
