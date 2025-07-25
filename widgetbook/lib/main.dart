@@ -20,6 +20,10 @@ class WidgetbookApp extends StatelessWidget {
         ViewportAddon(Viewports.all),
         InspectorAddon(),
         DeviceFrameAddon(devices: Devices.all),
+        BuilderAddon(
+          name: 'Center',
+          builder: (context, child) => Center(child: child),
+        ),
       ],
     );
   }
