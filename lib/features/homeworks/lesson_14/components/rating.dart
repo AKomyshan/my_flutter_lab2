@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/features/homeworks/lesson_14/typedefs.d.dart';
 import 'package:flutter_svg/svg.dart';
-
-typedef OnRatingChangeCallback = void Function(int rating);
 
 class Rating extends StatefulWidget {
   const Rating({super.key, this.onChange});

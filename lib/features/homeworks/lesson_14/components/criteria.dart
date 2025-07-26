@@ -2,21 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/components/index.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/extensions/widget_extensions.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/theme.dart';
+import 'package:flutter_lab/features/homeworks/lesson_14/typedefs.d.dart';
 
 class Criteria extends StatefulWidget {
   const Criteria({
     required this.title,
+    required this.onCriteriaChange,
     super.key,
   });
 
   final String title;
+  final OnCriteriaChangeCallback onCriteriaChange;
 
   @override
   State<Criteria> createState() => _CriteriaState();
 }
 
 class _CriteriaState extends State<Criteria> {
-  VoteMode? selected;
+  VoteMode? _selected;
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +34,24 @@ class _CriteriaState extends State<Criteria> {
         spacing: 12,
         children: [
           Expanded(child: Text(widget.title, style: regularTextStyle(16))),
-          Vote(mode: VoteMode.dislike, isSelected: selected == VoteMode.dislike)
-              .withOnTap(() => setState(() => selected = VoteMode.dislike)),
-          Vote(mode: VoteMode.like, isSelected: selected == VoteMode.like)
-              .withOnTap(() => setState(() => selected = VoteMode.like)),
+          Vote(
+            mode: VoteMode.dislike,
+            isSelected: _selected == VoteMode.dislike,
+          ).withOnTap(
+            () => setState(() {
+              _selected = VoteMode.dislike;
+              widget.onCriteriaChange(widget.title, VoteMode.dislike);
+            }),
+          ),
+          Vote(mode: VoteMode.like, isSelected: _selected == VoteMode.like)
+              .withOnTap(
+            () => setState(() {
+              _selected = VoteMode.like;
+              widget.onCriteriaChange(widget.title, VoteMode.like);
+            }),
+          ),
         ],
       ),
-    ).fullWidth();
+    );
   }
 }

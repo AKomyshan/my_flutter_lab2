@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/components/index.dart';
-import 'package:flutter_lab/features/homeworks/lesson_14/dtos/feedback_dto.dart';
-import 'package:flutter_lab/features/homeworks/lesson_14/extensions/widget_extensions.dart';
+import 'package:flutter_lab/features/homeworks/lesson_14/dtos/feedback_request_dto.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/get_criteria.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/theme.dart';
 import 'package:logger/logger.dart';
 
 const int backgroundColor = 0xffEEF2FC;
-final logger = Logger();
+final logger = Logger(printer: PrettyPrinter());
 
 class Homework14Screen extends StatefulWidget {
   const Homework14Screen({super.key});
@@ -17,8 +16,31 @@ class Homework14Screen extends StatefulWidget {
 }
 
 class _Homework14ScreenState extends State<Homework14Screen> {
-  final _request = FeedbackDto();
+  final _request = FeedbackRequestDto();
   final Future<Map<int, CriteriaDto>> _criteriaFuture = getCriteria();
+
+  // name it should be something like id in real life (Обсулуговування e.g.)
+  // entryTitle it also should be some id for criteria category (Випічка e.g.)
+  void _handeCriteriaChange(String name, VoteMode vote, String entryTitle) {
+    _validateCriteriaExistsOrCreateNew(entryTitle);
+    _request.criterias[entryTitle]!.votes[name] = vote;
+  }
+
+  void _handeCriteriaCommentChange(
+    String name,
+    String comment,
+    String entryTitle,
+  ) {
+    _validateCriteriaExistsOrCreateNew(entryTitle);
+    _request.criterias[entryTitle]!.comment = comment;
+  }
+
+  void _validateCriteriaExistsOrCreateNew(String entryTitle) {
+    final isCriteriaExists = _request.criterias.keys.contains(entryTitle);
+    if (!isCriteriaExists) {
+      _request.criterias[entryTitle] = CriteriaRequestDto();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +78,18 @@ class _Homework14ScreenState extends State<Homework14Screen> {
                   child: SegmentalFeedback(
                     title: entry.value.title,
                     criterias: entry.value.criterias,
-                  ).fullWidth(),
+                    onCriteriaChange: (name, vote) => _handeCriteriaChange(
+                      name,
+                      vote,
+                      entry.value.title,
+                    ),
+                    onCriteriaCommentChangeCallback: (name, comment) =>
+                        _handeCriteriaCommentChange(
+                      name,
+                      comment,
+                      entry.value.title,
+                    ),
+                  ),
                 ),
               ),
             ],
