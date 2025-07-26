@@ -3,19 +3,9 @@ import 'package:flutter_lab/features/homeworks/lesson_14/components/index.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/dtos/feedback_request_dto.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/get_criteria.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/theme.dart';
-import 'package:logger/logger.dart';
+import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
 const int backgroundColor = 0xffEEF2FC;
-final logger = Logger(
-  printer: PrettyPrinter(
-    methodCount: 2,
-    errorMethodCount: 8,
-    lineLength: 120,
-    colors: true,
-    printEmojis: true,
-    dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,
-  ),
-);
 
 class Homework14Screen extends StatefulWidget {
   const Homework14Screen({super.key});
@@ -66,7 +56,30 @@ class _Homework14ScreenState extends State<Homework14Screen> {
 
           return SliverStackView(
             spacing: 8,
-            remaining: RemainingButton(onPressed: () => logger.i(_request)),
+            remaining: RemainingButton(
+              onPressed: () {
+                showModalBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SingleChildScrollView(
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            SyntaxView(
+                              code: _request.toString(),
+                              syntax: Syntax.JAVASCRIPT,
+                              syntaxTheme: SyntaxTheme.monokaiSublime(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
             children: [
               CustomCard(
                 squaredTop: true,
