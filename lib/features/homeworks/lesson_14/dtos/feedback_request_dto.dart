@@ -6,6 +6,7 @@ class FeedbackRequestDto {
   int id = 1;
   int rating = 0;
   Map<String, CriteriaRequestDto> criterias = {};
+  String? additionalComment;
 
   Map<String, dynamic> toJson() {
     final encodableCriterias = <String, Map<String, dynamic>>{};
@@ -17,6 +18,7 @@ class FeedbackRequestDto {
       'id': id,
       'rating': rating,
       'criterias': encodableCriterias,
+      'additionalComment': additionalComment,
     };
   }
 

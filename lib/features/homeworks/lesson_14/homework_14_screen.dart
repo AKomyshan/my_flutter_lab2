@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/components/index.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/dtos/feedback_request_dto.dart';
+import 'package:flutter_lab/features/homeworks/lesson_14/extensions/widget_extensions.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/get_criteria.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/theme.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
-const int backgroundColor = 0xffEEF2FC;
+const Color backgroundColor = Color(0xffEEF2FC);
 
 class Homework14Screen extends StatefulWidget {
   const Homework14Screen({super.key});
@@ -44,7 +45,7 @@ class _Homework14ScreenState extends State<Homework14Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(backgroundColor),
+      backgroundColor: backgroundColor,
       extendBodyBehindAppBar: true,
       appBar: CustomAppBar(),
       body: FutureBuilder<Map<int, CriteriaDto>>(
@@ -74,7 +75,7 @@ class _Homework14ScreenState extends State<Homework14Screen> {
                             ),
                           ],
                         ),
-                      ),
+                      ).fullWidth(),
                     );
                   },
                 );
@@ -112,6 +113,24 @@ class _Homework14ScreenState extends State<Homework14Screen> {
                       entry.value.title,
                     ),
                   ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+                child: Text('Є що додати?', style: semiBoldTextStyle(18)),
+              ).fullWidth(),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 24,
+                  right: 24,
+                  top: 8,
+                  bottom: 32,
+                ),
+                child: CustomTextField(
+                  hint: 'Поділіться загальним враженням',
+                  backgroundColor: backgroundColor,
+                  onChanged: (text) => _request.additionalComment = text,
                 ),
               ),
             ],

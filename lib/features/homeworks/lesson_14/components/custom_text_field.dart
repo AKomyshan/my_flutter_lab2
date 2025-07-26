@@ -4,10 +4,12 @@ import 'package:flutter_lab/features/homeworks/lesson_14/theme.dart';
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     required this.hint,
+    this.backgroundColor = Colors.white,
     this.onChanged,
     super.key,
   });
 
+  final Color backgroundColor;
   final String hint;
   final ValueChanged<String>? onChanged;
 
@@ -17,7 +19,7 @@ class CustomTextField extends StatelessWidget {
       onChanged: onChanged,
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.white,
+        fillColor: backgroundColor,
         hintText: hint,
         hintStyle: regularTextStyle(16).copyWith(color: Colors.grey),
         contentPadding:
