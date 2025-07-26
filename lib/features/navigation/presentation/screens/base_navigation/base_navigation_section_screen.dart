@@ -16,7 +16,7 @@ class BaseNavigationSectionScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-          NavagationButton(
+          NavigationButton(
             title: 'Simple transition to new screen',
             onTap: () {
               Navigator.push(
@@ -28,7 +28,7 @@ class BaseNavigationSectionScreen extends StatelessWidget {
             },
           ),
           //https://docs.flutter.dev/cookbook/animation/page-route-animation
-          NavagationButton(
+          NavigationButton(
             title: 'Simple transition with custom transition',
             onTap: () {
               Navigator.push(
@@ -46,7 +46,7 @@ class BaseNavigationSectionScreen extends StatelessWidget {
               );
             },
           ),
-          NavagationButton(
+          NavigationButton(
             title: 'Transition with arguments',
             onTap: () {
               Navigator.push(
@@ -57,7 +57,7 @@ class BaseNavigationSectionScreen extends StatelessWidget {
               );
             },
           ),
-          NavagationButton(
+          NavigationButton(
             title: 'Transition with returning data',
             onTap: () async {
               final result = await Navigator.push(
@@ -75,7 +75,7 @@ class BaseNavigationSectionScreen extends StatelessWidget {
               }
             },
           ),
-          NavagationButton(
+          NavigationButton(
             title: 'Navigation to modal bottom sheet',
             onTap: () {
               showModalBottomSheet<void>(
