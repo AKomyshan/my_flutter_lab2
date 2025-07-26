@@ -6,7 +6,16 @@ import 'package:flutter_lab/features/homeworks/lesson_14/theme.dart';
 import 'package:logger/logger.dart';
 
 const int backgroundColor = 0xffEEF2FC;
-final logger = Logger();
+final logger = Logger(
+  printer: PrettyPrinter(
+    methodCount: 2,
+    errorMethodCount: 8,
+    lineLength: 120,
+    colors: true,
+    printEmojis: true,
+    dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,
+  ),
+);
 
 class Homework14Screen extends StatefulWidget {
   const Homework14Screen({super.key});
