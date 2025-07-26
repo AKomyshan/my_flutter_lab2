@@ -53,15 +53,14 @@ class _SegmentalFeedbackState extends State<SegmentalFeedback> {
                   onCriteriaChange: _handleCriteriaChange,
                 ),
               ),
-              isSomeVoteSelected
-                  ? Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: CustomTextField(
-                        hint: 'Розкажіть докладніше',
-                        onChanged: _handleCommentChange,
-                      ),
-                    )
-                  : SizedBox.shrink(),
+              if (isSomeVoteSelected)
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: CustomTextField(
+                    hint: 'Розкажіть докладніше',
+                    onChanged: _handleCommentChange,
+                  ),
+                ),
             ],
           ),
         ],

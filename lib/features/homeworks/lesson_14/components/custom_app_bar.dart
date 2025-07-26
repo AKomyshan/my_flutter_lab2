@@ -17,14 +17,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: ClipRRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: ColoredBox(
-            color: Colors.white.withAlpha(42),
-            child: AppBar(
-              title: const FeedbackScreenTitle(),
-              backgroundColor: Colors.white.withAlpha(200),
-              elevation: 0.0,
-              scrolledUnderElevation: 0.0,
-            ),
+          child: AppBar(
+            title: const FeedbackScreenTitle(),
+            backgroundColor: Colors.white.withAlpha(200),
+            elevation: 0.0,
+            scrolledUnderElevation: 0.0,
           ),
         ),
       ),

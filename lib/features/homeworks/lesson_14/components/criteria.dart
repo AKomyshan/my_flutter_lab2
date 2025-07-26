@@ -21,6 +21,18 @@ class Criteria extends StatefulWidget {
 class _CriteriaState extends State<Criteria> {
   VoteMode? _selected;
 
+  Widget buildVote(VoteMode mode) {
+    return Vote(
+      mode: mode,
+      isSelected: _selected == mode,
+    ).withOnTap(() {
+      setState(() {
+        _selected = mode;
+        widget.onCriteriaChange(widget.title, mode);
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,22 +46,8 @@ class _CriteriaState extends State<Criteria> {
         spacing: 12,
         children: [
           Expanded(child: Text(widget.title, style: regularTextStyle(16))),
-          Vote(
-            mode: VoteMode.dislike,
-            isSelected: _selected == VoteMode.dislike,
-          ).withOnTap(
-            () => setState(() {
-              _selected = VoteMode.dislike;
-              widget.onCriteriaChange(widget.title, VoteMode.dislike);
-            }),
-          ),
-          Vote(mode: VoteMode.like, isSelected: _selected == VoteMode.like)
-              .withOnTap(
-            () => setState(() {
-              _selected = VoteMode.like;
-              widget.onCriteriaChange(widget.title, VoteMode.like);
-            }),
-          ),
+          buildVote(VoteMode.dislike),
+          buildVote(VoteMode.like),
         ],
       ),
     );
