@@ -6,3 +6,4 @@ export './rating.dart';
 export './remaining_button.dart';
 export './segmental_feedback.dart';
 export './sliver_stack_view.dart';
+export './vote.dart';
