@@ -6,7 +6,7 @@ import 'package:flutter_lab/features/homeworks/lesson_14/theme.dart';
 import 'package:logger/logger.dart';
 
 const int backgroundColor = 0xffEEF2FC;
-final logger = Logger(printer: PrettyPrinter());
+final logger = Logger();
 
 class Homework14Screen extends StatefulWidget {
   const Homework14Screen({super.key});
@@ -57,7 +57,7 @@ class _Homework14ScreenState extends State<Homework14Screen> {
 
           return SliverStackView(
             spacing: 8,
-            remaining: RemainingButton(onPressed: () => logger.d(_request)),
+            remaining: RemainingButton(onPressed: () => logger.i(_request)),
             children: [
               CustomCard(
                 squaredTop: true,
