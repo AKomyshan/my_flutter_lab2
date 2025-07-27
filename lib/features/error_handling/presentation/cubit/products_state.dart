@@ -1,4 +1,4 @@
-import 'package:flutter_lab/features/error_handling/domain/entity/product_entity.dart';
+import 'package:flutter_lab/features/error_handling/data/repository/entities/product_entity.dart';
 
 class ProductsState {
   const ProductsState({

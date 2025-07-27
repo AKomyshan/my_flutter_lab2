@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_lab/core/network/products_api/products_api.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animated_buider.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animation_controller.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/build_in_transitions.dart';
@@ -17,17 +18,18 @@ import 'package:flutter_lab/features/animations/presentation/implicit_animations
 import 'package:flutter_lab/features/animations/presentation/screens/animations_main_screen.dart';
 import 'package:flutter_lab/features/app/screens/home_screen.dart';
 import 'package:flutter_lab/features/app/screens/page_names.dart';
-import 'package:flutter_lab/features/error_handling/domain/fake_products_repository.dart';
+import 'package:flutter_lab/features/error_handling/data/data_source/products_data_source.dart';
+import 'package:flutter_lab/features/error_handling/data/repository/products_repository.dart';
 import 'package:flutter_lab/features/error_handling/presentation/cubit/products_cubit.dart';
-import 'package:flutter_lab/features/error_handling/presentation/screens/error_handling_main_screen.dart';
-import 'package:flutter_lab/features/error_handling/presentation/screens/products_page_example.dart';
+import 'package:flutter_lab/features/error_handling/presentation/ui/screens/error_handling_main_screen.dart';
+import 'package:flutter_lab/features/error_handling/presentation/ui/screens/products_page_example.dart';
 import 'package:flutter_lab/features/homeworks/lesson_13/homework_13_screen.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/homework_14_screen.dart';
 import 'package:flutter_lab/features/homeworks/lesson_20_rate_app_feature/presentation/screens/rate_app_screen.dart';
 import 'package:flutter_lab/features/homeworks/lesson_22_explicit_animations/homework_animations_screen.dart';
-import 'package:flutter_lab/features/homeworks/lesson_23_error_handling_homework/domain/repository/fake_user_repository.dart';
+import 'package:flutter_lab/features/homeworks/lesson_23_error_handling_homework/data/repository/fake_user_repository.dart';
 import 'package:flutter_lab/features/homeworks/lesson_23_error_handling_homework/presentation/cubit/user_profile_cubit.dart';
-import 'package:flutter_lab/features/homeworks/lesson_23_error_handling_homework/presentation/screens/user_profile_homework_screen.dart';
+import 'package:flutter_lab/features/homeworks/lesson_23_error_handling_homework/presentation/ui/screens/user_profile_homework_screen.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/base_navigation_section_screen.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_empty_screen.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_screen_with_data.dart';
@@ -436,8 +438,13 @@ final router = GoRouter(
               path: 'products-page-example',
               name: ScreenNames.productsPageExample,
               builder: (context, state) => BlocProvider(
-                create: (context) =>
-                    ProductsCubit(FakeProductsRepository())..getProducts(),
+                create: (context) => ProductsCubit(
+                  ProductsRepositoryImpl(
+                    ProductsDataSourceImpl(
+                      ProductsApiImpl(),
+                    ),
+                  ),
+                )..getProducts(),
                 child: const ProductsPageExample(),
               ),
             ),

@@ -1,4 +1,4 @@
-import 'package:flutter_lab/features/homeworks/lesson_23_error_handling_homework/domain/entity/user_entity.dart';
+import 'package:flutter_lab/features/homeworks/lesson_23_error_handling_homework/data/repository/entity/user_entity.dart';
 
 class FakeUserRepository {
   bool _hasFailed = false;

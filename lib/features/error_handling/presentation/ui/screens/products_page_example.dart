@@ -53,6 +53,7 @@ class ProductsPageExample extends StatelessWidget {
               ProductsStatus.error => Center(
                   child: Text(
                     state.errorMessage ?? 'Error',
+                    textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 24),
                   ),
                 ),
