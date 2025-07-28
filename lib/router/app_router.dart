@@ -26,6 +26,11 @@ import 'package:flutter_lab/features/widgets/presentation/widgets/part1/scroll_e
 import 'package:flutter_lab/features/widgets/presentation/widgets/part1/sized_box_example_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/widgets/part1/stack_example_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/widgets/part1/text_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part2/custom_widgets_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part2/gesture_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part2/images_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part2/text_field_example_screen.dart';
+import 'package:flutter_lab/features/widgets/presentation/widgets/part2/widget_types_example_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/widgets/part3/example_1.dart';
 import 'package:flutter_lab/features/widgets/presentation/widgets/part3/example_2.dart';
 import 'package:flutter_lab/features/widgets/presentation/widgets/part3/example_3.dart';
@@ -123,6 +128,34 @@ final router = GoRouter(
               path: 'widgets-second-part',
               name: ScreenNames.widgetsSecondPart,
               builder: (context, state) => const WidgetsSecondPartScreen(),
+              routes: [
+                GoRoute(
+                  path: 'custom-widgets',
+                  name: ScreenNames.customWidgetsExample,
+                  builder: (context, state) =>
+                      const CustomWidgetsExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'widget-types',
+                  name: ScreenNames.widgetTypesExample,
+                  builder: (context, state) => const WidgetTypesExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'gesture',
+                  name: ScreenNames.gestureExample,
+                  builder: (context, state) => const GestureExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'text-field',
+                  name: ScreenNames.textFieldExample,
+                  builder: (context, state) => const TextFieldExampleScreen(),
+                ),
+                GoRoute(
+                  path: 'image',
+                  name: ScreenNames.imageExample,
+                  builder: (context, state) => const ImageExampleScreen(),
+                ),
+              ],
             ),
             GoRoute(
               path: 'understanding-constraints',
