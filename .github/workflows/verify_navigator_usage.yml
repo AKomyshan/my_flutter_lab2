@@ -26,9 +26,9 @@ jobs:
           
           if [ -s found_files.txt ]; then
             echo "::warning title=Found 'Navigator'::The word 'Navigator' was found in the following files:"
-            echo "files_found_list<<"EOF" >> "$GITHUB_OUTPUT"
+            echo "files_found_list<<EOF" >> "$GITHUB_OUTPUT"
             while IFS= read -r file; do
-              echo "* $file"
+              echo "* $file" >> "$GITHUB_OUTPUT"
             done < found_files.txt
             echo "EOF" >> "$GITHUB_OUTPUT"
           
