@@ -1,15 +1,142 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/features/homeworks/lesson_14/components/index.dart';
+import 'package:flutter_lab/features/homeworks/lesson_14/dtos/feedback_request_dto.dart';
+import 'package:flutter_lab/features/homeworks/lesson_14/extensions/widget_extensions.dart';
+import 'package:flutter_lab/features/homeworks/lesson_14/get_criteria.dart';
+import 'package:flutter_lab/features/homeworks/lesson_14/theme.dart';
+import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
-class Homework14Screen extends StatelessWidget {
+const Color backgroundColor = Color(0xffEEF2FC);
+
+class Homework14Screen extends StatefulWidget {
   const Homework14Screen({super.key});
+
+  @override
+  State<Homework14Screen> createState() => _Homework14ScreenState();
+}
+
+class _Homework14ScreenState extends State<Homework14Screen> {
+  final _request = FeedbackRequestDto();
+  final Future<Map<int, CriteriaDto>> _criteriaFuture = getCriteria();
+
+  // name it should be something like id in real life (Обсулуговування e.g.)
+  // entryTitle it also should be some id for criteria category (Випічка e.g.)
+  void _handeCriteriaChange(String name, VoteMode vote, String entryTitle) {
+    _validateCriteriaExistsOrCreateNew(entryTitle);
+    _request.criterias[entryTitle]!.votes[name] = vote;
+  }
+
+  void _handeCriteriaCommentChange(
+    String name,
+    String comment,
+    String entryTitle,
+  ) {
+    _validateCriteriaExistsOrCreateNew(entryTitle);
+    _request.criterias[entryTitle]!.comment = comment;
+  }
+
+  void _validateCriteriaExistsOrCreateNew(String entryTitle) {
+    final isCriteriaExists = _request.criterias.keys.contains(entryTitle);
+    if (!isCriteriaExists) {
+      _request.criterias[entryTitle] = CriteriaRequestDto();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Homework_14'),
+      backgroundColor: backgroundColor,
+      extendBodyBehindAppBar: true,
+      appBar: CustomAppBar(),
+      body: FutureBuilder<Map<int, CriteriaDto>>(
+        future: _criteriaFuture,
+        builder: (_, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return SliverStackView(
+            spacing: 8,
+            remaining: RemainingButton(
+              onPressed: () {
+                showModalBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SingleChildScrollView(
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            SyntaxView(
+                              code: _request.toString(),
+                              syntax: Syntax.JAVASCRIPT,
+                              syntaxTheme: SyntaxTheme.monokaiSublime(),
+                            ),
+                          ],
+                        ),
+                      ).fullWidth(),
+                    );
+                  },
+                );
+              },
+            ),
+            children: [
+              CustomCard(
+                squaredTop: true,
+                child: Rating(
+                  onChange: (rating) =>
+                      setState(() => _request.rating = rating),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Text(
+                  'Яку оціночку поставите відділам?',
+                  style: semiBoldTextStyle(18),
+                ),
+              ),
+              ...snapshot.data!.entries.map(
+                (entry) => CustomCard(
+                  child: SegmentalFeedback(
+                    title: entry.value.title,
+                    criterias: entry.value.criterias,
+                    onCriteriaChange: (name, vote) => _handeCriteriaChange(
+                      name,
+                      vote,
+                      entry.value.title,
+                    ),
+                    onCriteriaCommentChangeCallback: (name, comment) =>
+                        _handeCriteriaCommentChange(
+                      name,
+                      comment,
+                      entry.value.title,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+                child: Text('Є що додати?', style: semiBoldTextStyle(18)),
+              ).fullWidth(),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 24,
+                  right: 24,
+                  top: 8,
+                  bottom: 32,
+                ),
+                child: CustomTextField(
+                  hint: 'Поділіться загальним враженням',
+                  backgroundColor: backgroundColor,
+                  onChanged: (text) => _request.additionalComment = text,
+                ),
+              ),
+            ],
+          );
+        },
       ),
-      body: const SizedBox.shrink(),
     );
   }
 }
