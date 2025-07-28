@@ -1,0 +1,50 @@
+name: Search for 'Navigator'
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+  workflow_dispatch:
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Search for 'Navigator' (case-insensitive)
+        id: search_results
+        run: |
+          echo "Searching for 'Navigator' (case-insensitive) in all code files..."
+        
+          grep -rilw "Navigator" . > found_files.txt || true
+          
+          if [ -s found_files.txt ]; then
+            echo "::warning title=Found 'Navigator'::The word 'Navigator' was found in the following files:"
+            cat found_files.txt
+            echo "::set-output name=found::true"
+            echo "files_found=$(cat found_files.txt | tr '\n' ' ')" >> "$GITHUB_OUTPUT"
+          else
+            echo "The word 'Navigator' was not found in any files."
+            echo "::set-output name=found::false"
+          fi
+        shell: bash
+
+      - name: Display search status
+        if: steps.search_results.outputs.found == 'true'
+        run: |
+          echo "Successfully completed search. 'Navigator' was found in the following files:"
+          echo "${{ steps.search_results.outputs.files_found }}"
+        shell: bash
+
+      - name: Fail build if 'Navigator' is found
+        if: steps.search_results.outputs.found == 'true'
+        run: |
+          echo "Error: The word 'Navigator' was found in the codebase. Failing the build."
+          exit 1 # This command causes the step, and thus the job, to fail.
+        shell: bash
