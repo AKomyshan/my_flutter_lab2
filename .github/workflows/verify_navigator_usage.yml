@@ -45,9 +45,7 @@ jobs:
       - name: Display search results
         if: steps.search_results.outputs.found == 'true'
         run: |
-          echo "::group::Files where 'Navigator' was found"
           echo "${{ steps.search_results.outputs.files_found_list }}"
-          echo "::endgroup::"
         shell: bash
 
       - name: Fail build if 'Navigator' is found
