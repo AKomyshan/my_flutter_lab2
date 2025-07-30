@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ImageExampleScreen extends StatelessWidget {
   const ImageExampleScreen({super.key});
@@ -23,8 +24,8 @@ class ImageExampleScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Image.asset(
-                'assets/images/star.png',
+              SvgPicture.asset(
+                'assets/images/star.svg',
                 width: 200,
                 height: 200,
                 fit: BoxFit.contain,
