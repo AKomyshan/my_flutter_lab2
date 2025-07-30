@@ -11,12 +11,20 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:widgetbook/widgetbook.dart' as _i1;
-import 'package:widgetbook_workspace/books/custom_card_book.dart' as _i3;
-import 'package:widgetbook_workspace/books/full_result.dart' as _i2;
-import 'package:widgetbook_workspace/books/rating_book.dart' as _i4;
-import 'package:widgetbook_workspace/books/remaining_button_book.dart' as _i5;
+import 'package:widgetbook_workspace/books/custom_card_book.dart' as _i4;
+import 'package:widgetbook_workspace/books/full_result.dart' as _i3;
+import 'package:widgetbook_workspace/books/lab17_result.dart' as _i2;
+import 'package:widgetbook_workspace/books/rating_book.dart' as _i5;
+import 'package:widgetbook_workspace/books/remaining_button_book.dart' as _i6;
 
 final directories = <_i1.WidgetbookNode>[
+  _i1.WidgetbookLeafComponent(
+    name: 'FlutterWidgetsApp',
+    useCase: _i1.WidgetbookUseCase(
+      name: 'Default',
+      builder: _i2.buildFlutterWidgetsAppScreenUseCase,
+    ),
+  ),
   _i1.WidgetbookFolder(
     name: 'features',
     children: [
@@ -30,7 +38,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'Homework14Screen',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
-                  builder: _i2.buildHomework14ScreenUseCase,
+                  builder: _i3.buildHomework14ScreenUseCase,
                 ),
               ),
               _i1.WidgetbookFolder(
@@ -40,21 +48,21 @@ final directories = <_i1.WidgetbookNode>[
                     name: 'CustomCard',
                     useCase: _i1.WidgetbookUseCase(
                       name: 'Default',
-                      builder: _i3.buildCustomCardUseCase,
+                      builder: _i4.buildCustomCardUseCase,
                     ),
                   ),
                   _i1.WidgetbookLeafComponent(
                     name: 'Rating',
                     useCase: _i1.WidgetbookUseCase(
                       name: 'Default',
-                      builder: _i4.buildRatingUseCase,
+                      builder: _i5.buildRatingUseCase,
                     ),
                   ),
                   _i1.WidgetbookLeafComponent(
                     name: 'RemainingButton',
                     useCase: _i1.WidgetbookUseCase(
                       name: 'Default',
-                      builder: _i5.buildRemainingButtonUseCase,
+                      builder: _i6.buildRemainingButtonUseCase,
                     ),
                   ),
                 ],

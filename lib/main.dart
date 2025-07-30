@@ -1,41 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/navigation_main_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_main_screen.dart';
+import 'package:go_router/go_router.dart';
 
 void main() {
   runApp(const FlutterWidgetsApp());
 }
+
+final GoRouter _router = GoRouter(
+  routes: <RouteBase>[
+    GoRoute(
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) {
+        return const HomeScreen();
+      },
+      routes: [
+        GoRoute(path: 'widgets', builder: (_, __) => const WidgetsScreen()),
+        GoRoute(
+          path: 'navigation',
+          builder: (_, __) => const NavigationMainScreen(),
+        ),
+      ],
+    ),
+  ],
+);
 
 class FlutterWidgetsApp extends StatelessWidget {
   const FlutterWidgetsApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      // routes: {
-      //   '/new_screen': (context) => const SimpleEmptyScreen(),
-      //   '/simple_screen_with_data': (context) {
-      //     return SimpleScreenWithData(
-      //       id: ModalRoute.of(context)!.settings.arguments! as String,
-      //     );
-      //   },
-      // },
-      // onGenerateRoute: (settings) {
-      //   if (settings.name == '/new_screen') {
-      //     return MaterialPageRoute(
-      //       builder: (context) => const SimpleEmptyScreen(),
-      //     );
-      //   }
-      //   if (settings.name == '/simple_screen_with_data') {
-      //     return MaterialPageRoute(
-      //       builder: (context) => SimpleScreenWithData(
-      //         id: settings.arguments! as String,
-      //       ),
-      //     );
-      //   }
-      //   return null;
-      // },
-      home: HomeScreen(),
+    return MaterialApp.router(
+      routerConfig: _router,
     );
   }
 }
@@ -57,21 +53,23 @@ class HomeScreen extends StatelessWidget {
           children: [
             FeatureCard(
               title: 'Widgets',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => const WidgetsScreen(),
-                ),
-              ),
+              // onTap: () => Navigator.push(
+              //   context,
+              //   MaterialPageRoute<Widget>(
+              //     builder: (context) => const WidgetsScreen(),
+              //   ),
+              // ),
+              onTap: () => context.go('/widgets'),
             ),
             FeatureCard(
               title: 'Navigation',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => const NavigationMainScreen(),
-                ),
-              ),
+              // onTap: () => Navigator.push(
+              //   context,
+              //   MaterialPageRoute<Widget>(
+              //     builder: (context) => const NavigationMainScreen(),
+              //   ),
+              // ),
+              onTap: () => context.go('/navigation'),
             ),
           ],
         ),
