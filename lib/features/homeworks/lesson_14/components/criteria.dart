@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/components/index.dart';
-import 'package:flutter_lab/features/homeworks/lesson_14/extensions/widget_extensions.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/theme.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/typedefs.d.dart';
 
@@ -22,15 +21,16 @@ class _CriteriaState extends State<Criteria> {
   VoteMode? _selected;
 
   Widget buildVote(VoteMode mode) {
-    return Vote(
-      mode: mode,
-      isSelected: _selected == mode,
-    ).withOnTap(() {
-      setState(() {
+    return GestureDetector(
+      onTap: () {
         _selected = mode;
         widget.onCriteriaChange(widget.title, mode);
-      });
-    });
+      },
+      child: Vote(
+        mode: mode,
+        isSelected: _selected == mode,
+      ),
+    );
   }
 
   @override

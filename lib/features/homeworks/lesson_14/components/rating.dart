@@ -36,7 +36,6 @@ class _RatingState extends State<Rating> {
           final starNumber = i + 1;
           final isFilled = starNumber <= _currentRating;
           return Flexible(
-            flex: 1,
             child: GestureDetector(
               onTap: () => _handleStarTap(starNumber),
               child: Container(
