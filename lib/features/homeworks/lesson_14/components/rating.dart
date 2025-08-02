@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/extensions/build_context_extension.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/typedefs.d.dart';
@@ -26,7 +25,6 @@ class _RatingState extends State<Rating> {
 
   @override
   Widget build(BuildContext context) {
-    if (kDebugMode) print('Screen width: ${MediaQuery.of(context).size.width}');
     return Row(
       spacing: context.isSmScreen ? 0 : 8,
       mainAxisAlignment: MainAxisAlignment.center,
