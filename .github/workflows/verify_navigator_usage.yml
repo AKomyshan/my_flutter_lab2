@@ -1,9 +1,6 @@
 name: Search for 'Navigator'
 
 on:
-  push:
-    branches:
-      - "**"
   pull_request:
     branches:
       - "**"
