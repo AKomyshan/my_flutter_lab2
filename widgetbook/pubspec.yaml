@@ -13,6 +13,8 @@ dependencies:
   widgetbook_annotation: ^3.5.0
   flutter_lab:
     path: ../
+  get_it: ^8.1.0
+  talker_flutter: ^4.9.3
 
 dev_dependencies:
   flutter_test:
