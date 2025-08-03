@@ -1,5 +1,6 @@
 import 'package:flutter_lab/features/navigation/presentation/screens/navigation_main_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_main_screen.dart';
+import 'package:flutter_lab/router/home/navigation/navigation_router.dart';
 import 'package:flutter_lab/router/home/widgets/widgets_router.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -33,5 +34,6 @@ final homeSubRoutes = <RouteBase>[
     path: HomeRoutes.navigation.path,
     name: HomeRoutes.navigation.name,
     builder: (_, __) => const NavigationMainScreen(),
+    routes: navigationMainScreenRoutes,
   ),
 ];

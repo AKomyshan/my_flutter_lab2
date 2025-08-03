@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SimpleEmptyScreen extends StatelessWidget {
   const SimpleEmptyScreen({super.key});
@@ -11,7 +12,7 @@ class SimpleEmptyScreen extends StatelessWidget {
       ),
       body: Center(
         child: InkWell(
-          onTap: () => Navigator.of(context).pop(),
+          onTap: () => context.pop(),
           child: Container(
             height: 50,
             width: 150,
