@@ -3,6 +3,8 @@ import 'package:flutter_lab/features/app/screens/home_screen.dart';
 import 'package:flutter_lab/features/app/screens/page_names.dart';
 import 'package:flutter_lab/features/homeworks/lesson_13/homework_13_screen.dart';
 import 'package:flutter_lab/features/homeworks/lesson_14/homework_14_screen.dart';
+import 'package:flutter_lab/features/homeworks/lesson_19/homework_%D1%81ubit/homework_cubit_screen.dart';
+import 'package:flutter_lab/features/homeworks/lesson_19/homework_bloc/homework_bloc_screen.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/base_navigation_section_screen.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_empty_screen.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_screen_with_data.dart';
@@ -285,6 +287,16 @@ final router = GoRouter(
               path: 'simple-state-management',
               name: ScreenNames.simpleStateManagement,
               builder: (context, state) => const SimpleStateManagementScreen(),
+            ),
+            GoRoute(
+              path: 'homework-cubit',
+              name: ScreenNames.homeworkCubit,
+              builder: (context, state) => const HomeworkCubitScreen(),
+            ),
+            GoRoute(
+              path: 'homework-bloc',
+              name: ScreenNames.homeworkBloc,
+              builder: (context, state) => const HomeworkBlocScreen(),
             ),
           ],
         ),
