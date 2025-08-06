@@ -47,6 +47,10 @@ class HomeScreen extends StatelessWidget {
               title: 'Error Handling',
               onTap: () => context.goNamed(ScreenNames.errorHandling),
             ),
+            FeatureCard(
+              title: 'Rest API',
+              onTap: () => context.goNamed(ScreenNames.restApi),
+            ),
           ],
         ),
       ),

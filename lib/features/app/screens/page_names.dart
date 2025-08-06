@@ -86,4 +86,8 @@ abstract class ScreenNames {
       'understanding-constraints-example-4';
   static const understandingConstraintsExample5 =
       'understanding-constraints-example-5';
+
+  // Rest API
+  static const restApi = 'rest-api';
+  static const restApiDecodingExample = 'rest-api-decoding-example';
 }

@@ -36,6 +36,8 @@ import 'package:flutter_lab/features/navigation/presentation/screens/base_naviga
 import 'package:flutter_lab/features/navigation/presentation/screens/base_navigation/simple_screen_with_returning_data.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/named_navigation/named_routes_navigation.dart';
 import 'package:flutter_lab/features/navigation/presentation/screens/navigation_main_screen.dart';
+import 'package:flutter_lab/features/rest_api/presentation/decoding_example_screen.dart';
+import 'package:flutter_lab/features/rest_api/presentation/rest_api_base_screen.dart';
 import 'package:flutter_lab/features/state_managment/bloc_couter_example/bloc_counter_example_screen.dart';
 import 'package:flutter_lab/features/state_managment/common_mistakes_screen.dart';
 import 'package:flutter_lab/features/state_managment/cubit_counter_example/cubit_counter_example_screen.dart';
@@ -456,6 +458,19 @@ final router = GoRouter(
                     UserProfileCubit(FakeUserRepository())..loadUserProfile(),
                 child: const UserProfileHomeworkScreen(),
               ),
+            ),
+          ],
+        ),
+        // Rest API routes
+        GoRoute(
+          path: 'rest-api',
+          name: ScreenNames.restApi,
+          builder: (context, state) => const RestApiBaseScreen(),
+          routes: [
+            GoRoute(
+              path: 'decoding',
+              name: ScreenNames.restApiDecodingExample,
+              builder: (context, state) => const JsonDecodingExampleScreen(),
             ),
           ],
         ),
