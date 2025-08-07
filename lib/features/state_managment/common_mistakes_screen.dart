@@ -65,19 +65,16 @@ class CommonMistakesScreen extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () => showDialog<void>(
                     context: context,
-                    builder: (context) => BlocProvider.value(
-                      value: context.read<SimpleCubitExample>(),
-                      child: AlertDialog(
-                        backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        title: const Text('Example dialog'),
-                        content: BlocBuilder<SimpleCubitExample, int>(
-                          builder: (context, state) {
-                            return Text('Current state number: $state');
-                          },
-                        ),
+                    builder: (context) => AlertDialog(
+                      backgroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      title: const Text('Example dialog'),
+                      content: BlocBuilder<SimpleCubitExample, int>(
+                        builder: (context, state) {
+                          return Text('Current state number: $state');
+                        },
                       ),
                     ),
                   ),
