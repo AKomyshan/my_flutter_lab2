@@ -31,7 +31,7 @@ class _HomeworkBlocScreenState extends State<HomeworkBlocScreen> {
             const Text('You have pushed the button this many times:'),
             BlocSelector<CounterBloc, CounterState, int>(
               selector: (state) => state.value,
-              builder: (context, state) {
+              builder: (_, state) {
                 return Text(
                   '$state',
                   style: Theme.of(context).textTheme.headlineMedium,

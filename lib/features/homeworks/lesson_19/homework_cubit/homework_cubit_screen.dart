@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_lab/features/homeworks/lesson_19/homework_cubit/cubit/counter_cubit.dart';
 import 'package:flutter_lab/features/homeworks/lesson_19/number_input_field.dart';
 
 class HomeworkCubitScreen extends StatefulWidget {
@@ -11,13 +13,7 @@ class HomeworkCubitScreen extends StatefulWidget {
 class _HomeworkCubitScreenState extends State<HomeworkCubitScreen> {
   final TextEditingController _controller = TextEditingController(text: '0');
 
-  int _counter = 0;
-
-  void _incrementCounter() => setState(() => _counter++);
-
-  void _decrementCounter() => setState(() => _counter--);
-
-  void _resetCounter() => setState(() => _counter = 0);
+  int parseIntOrDefault(String test) => int.tryParse(_controller.text) ?? 0;
 
   @override
   void dispose() {
@@ -27,7 +23,8 @@ class _HomeworkCubitScreenState extends State<HomeworkCubitScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('IVE REPAINTED');
+    final counterCubit = context.read<CounterCubit>();
+
     return Scaffold(
       appBar: AppBar(title: const Text('HomeworkCubitScreen')),
       body: Center(
@@ -35,24 +32,29 @@ class _HomeworkCubitScreenState extends State<HomeworkCubitScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            BlocSelector<CounterCubit, CounterCubitState, int>(
+              selector: (state) => state.value,
+              builder: (_, state) {
+                return Text(
+                  '$state',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                );
+              },
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 8,
               children: [
                 ElevatedButton(
-                  onPressed: _decrementCounter,
+                  onPressed: counterCubit.decrement,
                   child: const Text('-1'),
                 ),
                 ElevatedButton(
-                  onPressed: _resetCounter,
+                  onPressed: counterCubit.reset,
                   child: const Text('Reset'),
                 ),
                 ElevatedButton(
-                  onPressed: _incrementCounter,
+                  onPressed: counterCubit.increment,
                   child: const Text('+1'),
                 ),
               ],
@@ -63,15 +65,15 @@ class _HomeworkCubitScreenState extends State<HomeworkCubitScreen> {
                 spacing: 8,
                 children: [
                   ElevatedButton(
-                    onPressed: () => setState(
-                          () => _counter -= int.tryParse(_controller.text) ?? 0,
+                    onPressed: () => counterCubit.add(
+                      -parseIntOrDefault(_controller.text),
                     ),
                     child: const Text('-'),
                   ),
                   Expanded(child: NumberInputField(controller: _controller)),
                   ElevatedButton(
-                    onPressed: () => setState(
-                          () => _counter += int.tryParse(_controller.text) ?? 0,
+                    onPressed: () => counterCubit.add(
+                      parseIntOrDefault(_controller.text),
                     ),
                     child: const Text('+'),
                   ),

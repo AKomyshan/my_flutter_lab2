@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.only(right: 16),
             child: BlocSelector<CounterBloc, CounterState, int>(
               selector: (state) => state.value,
-              builder: (context, state) {
+              builder: (_, state) {
                 return Text(
                   '$state',
                   style: const TextStyle(
