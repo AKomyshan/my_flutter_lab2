@@ -1,9 +1,22 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/features/navigation/presentation/screens/navigation_main_screen.dart';
-import 'package:flutter_lab/features/widgets/presentation/screens/widgets_main_screen.dart';
+import 'package:flutter_lab/router/app_router.dart';
+import 'package:get_it/get_it.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 void main() {
-  runApp(const FlutterWidgetsApp());
+  runZonedGuarded(() {
+    WidgetsFlutterBinding.ensureInitialized();
+    _initDependencies();
+    runApp(const FlutterWidgetsApp());
+  }, (Object error, StackTrace stack) {
+    GetIt.I<Talker>().handle(error, stack, 'Uncaught app exception');
+  });
+}
+
+void _initDependencies() {
+  GetIt.I.registerSingleton<Talker>(TalkerFlutter.init());
 }
 
 class FlutterWidgetsApp extends StatelessWidget {
@@ -11,112 +24,8 @@ class FlutterWidgetsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      // routes: {
-      //   '/new_screen': (context) => const SimpleEmptyScreen(),
-      //   '/simple_screen_with_data': (context) {
-      //     return SimpleScreenWithData(
-      //       id: ModalRoute.of(context)!.settings.arguments! as String,
-      //     );
-      //   },
-      // },
-      // onGenerateRoute: (settings) {
-      //   if (settings.name == '/new_screen') {
-      //     return MaterialPageRoute(
-      //       builder: (context) => const SimpleEmptyScreen(),
-      //     );
-      //   }
-      //   if (settings.name == '/simple_screen_with_data') {
-      //     return MaterialPageRoute(
-      //       builder: (context) => SimpleScreenWithData(
-      //         id: settings.arguments! as String,
-      //       ),
-      //     );
-      //   }
-      //   return null;
-      // },
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter Lab'),
-        backgroundColor: Colors.blue.shade100,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            FeatureCard(
-              title: 'Widgets',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => const WidgetsScreen(),
-                ),
-              ),
-            ),
-            FeatureCard(
-              title: 'Navigation',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => const NavigationMainScreen(),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class FeatureCard extends StatelessWidget {
-  const FeatureCard({
-    required this.title,
-    required this.onTap,
-    super.key,
-  });
-
-  final String title;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 16,
-                color: Colors.grey.shade600,
-              ),
-            ],
-          ),
-        ),
-      ),
+    return MaterialApp.router(
+      routerConfig: router,
     );
   }
 }

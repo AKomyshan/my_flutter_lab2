@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_first_part_screen.dart';
-import 'package:flutter_lab/features/widgets/presentation/widgets/part2/custom_widgets_example_screen.dart';
-import 'package:flutter_lab/features/widgets/presentation/widgets/part2/gesture_example_screen.dart';
-import 'package:flutter_lab/features/widgets/presentation/widgets/part2/images_example_screen.dart';
-import 'package:flutter_lab/features/widgets/presentation/widgets/part2/text_field_example_screen.dart';
-import 'package:flutter_lab/features/widgets/presentation/widgets/part2/widget_types_example_screen.dart';
+import 'package:flutter_lab/router/home/widgets/part2/part2_router.dart';
+import 'package:go_router/go_router.dart';
 
 class WidgetsSecondPartScreen extends StatelessWidget {
   const WidgetsSecondPartScreen({super.key});
@@ -24,58 +21,36 @@ class WidgetsSecondPartScreen extends StatelessWidget {
             description:
                 'Learn how to create reusable custom widgets to avoid code '
                 'duplication and improve maintainability.',
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute<Widget>(
-                builder: (context) => const CustomWidgetsExampleScreen(),
-              ),
-            ),
+            onTap: () =>
+                context.goNamed(WidgetsSecondPartRoutes.customWidgets.name),
           ),
           WidgetExampleCard(
             title: 'Stateless vs Stateful Widgets',
             description:
                 'Understanding the fundamental types of widgets in Flutter and '
                 'when to use each one.',
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute<Widget>(
-                builder: (context) => const WidgetTypesExampleScreen(),
-              ),
-            ),
+            onTap: () =>
+                context.goNamed(WidgetsSecondPartRoutes.widgetTypes.name),
           ),
           WidgetExampleCard(
             title: 'GestureDetector & InkWell',
             description:
                 'Widgets for handling touch gestures and creating interactive '
                 'elements with material design ink effects.',
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute<Widget>(
-                builder: (context) => const GestureExampleScreen(),
-              ),
-            ),
+            onTap: () => context.goNamed(WidgetsSecondPartRoutes.gesture.name),
           ),
           WidgetExampleCard(
             title: 'TextFields & TextFormField',
             description:
                 'Input widgets for text entry with various styles, validation, '
                 'and form integration capabilities.',
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute<Widget>(
-                builder: (context) => const TextFieldExampleScreen(),
-              ),
-            ),
+            onTap: () =>
+                context.goNamed(WidgetsSecondPartRoutes.textField.name),
           ),
           WidgetExampleCard(
             title: 'Images',
             description: 'Widgets for displaying images',
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute<Widget>(
-                builder: (context) => const ImageExampleScreen(),
-              ),
-            ),
+            onTap: () => context.goNamed(WidgetsSecondPartRoutes.images.name),
           ),
         ],
       ),
