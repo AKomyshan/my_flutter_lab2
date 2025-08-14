@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_lab/core/network/news_api/fake/news_api_fake.dart';
 import 'package:flutter_lab/core/network/products_api/products_api.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animated_buider.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animation_controller.dart';
@@ -43,6 +44,11 @@ import 'package:flutter_lab/features/state_managment/common_mistakes_screen.dart
 import 'package:flutter_lab/features/state_managment/cubit_counter_example/cubit_counter_example_screen.dart';
 import 'package:flutter_lab/features/state_managment/simple_example.dart/simple_state_management_screen.dart';
 import 'package:flutter_lab/features/state_managment/state_management_main_screen.dart';
+import 'package:flutter_lab/features/top_news/data/data_source/top_news_data_source.dart';
+import 'package:flutter_lab/features/top_news/data/repository/news_repository.dart';
+import 'package:flutter_lab/features/top_news/presentation/bloc/news_cubit.dart';
+import 'package:flutter_lab/features/top_news/presentation/ui/top_news_screen.dart';
+import 'package:flutter_lab/features/top_news/presentation/ui/web_view_article.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_first_part_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_main_screen.dart';
 import 'package:flutter_lab/features/widgets/presentation/screens/widgets_second_part_screen.dart';
@@ -471,6 +477,30 @@ final router = GoRouter(
               path: 'decoding',
               name: ScreenNames.restApiDecodingExample,
               builder: (context, state) => const JsonDecodingExampleScreen(),
+            ),
+          ],
+        ),
+        // Top News routes
+        GoRoute(
+          path: 'top-news',
+          name: ScreenNames.topNews,
+          builder: (context, state) => BlocProvider(
+            create: (context) => NewsCubit(
+              repository: ArticleRepository(
+                dataSource: TopNewsDataSource(
+                  newsApi: NewsApiFake(),
+                ),
+              ),
+            )..getTopNews(),
+            child: const TopNewsScreen(),
+          ),
+          routes: [
+            GoRoute(
+              path: 'article/:url',
+              name: ScreenNames.webViewArticle,
+              builder: (context, state) => WebViewArticleScreen(
+                url: state.pathParameters['url'] ?? '',
+              ),
             ),
           ],
         ),
