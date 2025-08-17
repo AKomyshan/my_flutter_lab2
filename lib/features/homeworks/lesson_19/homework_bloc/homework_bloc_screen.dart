@@ -21,7 +21,7 @@ class _HomeworkBlocScreenState extends State<HomeworkBlocScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final counterBlock = context.read<CounterBloc>();
+    final counterBloc = context.read<CounterBloc>();
     return Scaffold(
       appBar: AppBar(title: const Text('HomeworkBlocScreen')),
       body: Center(
@@ -31,9 +31,9 @@ class _HomeworkBlocScreenState extends State<HomeworkBlocScreen> {
             const Text('You have pushed the button this many times:'),
             BlocSelector<CounterBloc, CounterState, int>(
               selector: (state) => state.value,
-              builder: (_, state) {
+              builder: (_, counter) {
                 return Text(
-                  '$state',
+                  '$counter',
                   style: Theme.of(context).textTheme.headlineMedium,
                 );
               },
@@ -43,15 +43,15 @@ class _HomeworkBlocScreenState extends State<HomeworkBlocScreen> {
               spacing: 8,
               children: [
                 ElevatedButton(
-                  onPressed: () => counterBlock.add(CounterDecrementEvent()),
+                  onPressed: () => counterBloc.add(CounterDecrementEvent()),
                   child: const Text('-1'),
                 ),
                 ElevatedButton(
-                  onPressed: () => counterBlock.add(CounterResetEvent()),
+                  onPressed: () => counterBloc.add(CounterResetEvent()),
                   child: const Text('Reset'),
                 ),
                 ElevatedButton(
-                  onPressed: () => counterBlock.add(CounterIncrementEvent()),
+                  onPressed: () => counterBloc.add(CounterIncrementEvent()),
                   child: const Text('+1'),
                 ),
               ],
@@ -62,14 +62,14 @@ class _HomeworkBlocScreenState extends State<HomeworkBlocScreen> {
                 spacing: 8,
                 children: [
                   ElevatedButton(
-                    onPressed: () => counterBlock.add(
+                    onPressed: () => counterBloc.add(
                       CounterAddEvent(-(int.tryParse(_controller.text) ?? 0)),
                     ),
                     child: const Text('-'),
                   ),
                   Expanded(child: NumberInputField(controller: _controller)),
                   ElevatedButton(
-                    onPressed: () => counterBlock.add(
+                    onPressed: () => counterBloc.add(
                       CounterAddEvent(int.tryParse(_controller.text) ?? 0),
                     ),
                     child: const Text('+'),

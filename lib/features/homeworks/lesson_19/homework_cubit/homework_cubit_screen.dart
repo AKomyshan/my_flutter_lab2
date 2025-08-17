@@ -11,7 +11,7 @@ class HomeworkCubitScreen extends StatefulWidget {
 }
 
 class _HomeworkCubitScreenState extends State<HomeworkCubitScreen> {
-  final TextEditingController _controller = TextEditingController(text: '0');
+  final _controller = TextEditingController(text: '0');
 
   int parseIntOrDefault(String test) => int.tryParse(_controller.text) ?? 0;
 
