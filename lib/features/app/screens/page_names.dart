@@ -46,6 +46,8 @@ abstract class ScreenNames {
 
   // State Management
   static const simpleStateManagement = 'simple-state-management';
+  static const homeworkCubit = 'homework-cubit';
+  static const homeworkBloc = 'homework-bloc';
 
   // Understanding Constraints Examples
   static const understandingConstraintsExample1 =

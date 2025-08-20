@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lab/features/app/screens/page_names.dart';
-import 'package:flutter_lab/features/state_managment/simple_example.dart/providers/counter_provider.dart';
+import 'package:flutter_lab/features/homeworks/lesson_19/homework_bloc/bloc/counter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
 class SimpleStateManagementScreen extends StatelessWidget {
   const SimpleStateManagementScreen({super.key});
@@ -28,15 +28,15 @@ class CounterScreen extends StatefulWidget {
 
 class _CounterScreenState extends State<CounterScreen> {
   void _incrementCounter() {
-    context.read<CounterProvider>().increment();
+    context.read<CounterBloc>().add(CounterIncrementEvent());
   }
 
   void _decrementCounter() {
-    context.read<CounterProvider>().decrement();
+    context.read<CounterBloc>().add(CounterDecrementEvent());
   }
 
   void _resetCounter() {
-    context.read<CounterProvider>().reset();
+    context.read<CounterBloc>().add(CounterResetEvent());
   }
 
   @override
@@ -69,10 +69,11 @@ class _CounterScreenState extends State<CounterScreen> {
                   ),
                 ],
               ),
-              child: Consumer<CounterProvider>(
-                builder: (context, counterProvider, child) {
+              child: BlocSelector<CounterBloc, CounterState, int>(
+                selector: (state) => state.value,
+                builder: (_, state) {
                   return Text(
-                    '${counterProvider.counter}',
+                    '$state',
                     style: const TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
