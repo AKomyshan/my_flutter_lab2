@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -11,32 +12,26 @@ class Homework22Screen extends StatefulWidget {
 
 class _Homework22ScreenState extends State<Homework22Screen>
     with TickerProviderStateMixin {
-  late final AnimationController _rotationController;
-  late final AnimationController _xTranslateController;
+  late final AnimationController _yTranslateController;
 
-  late final Animation<double> _rotationAnimation;
-  late final Animation<double> _xTranslateAnimation;
+  late final Animation<double> _yTranslateAnimation;
 
   @override
   void initState() {
     super.initState();
-    _rotationController = AnimationController(
-      vsync: this,
-    );
-    _xTranslateController = AnimationController(vsync: this);
 
-    _rotationAnimation = Tween<double>(
-      begin: _rotationController.value,
-      end: _rotationController.value + (Random().nextBool() ? 1.0 : -1.0),
+    final currentView = PlatformDispatcher.instance.views.first;
+    final screenPixelRatio = currentView.devicePixelRatio;
+    final screenHeightPixels = currentView.physicalSize.longestSide;
+
+    _yTranslateController = AnimationController(vsync: this);
+
+    _yTranslateAnimation = Tween<double>(
+      begin: 0.0,
+      end: -((screenHeightPixels / screenPixelRatio) - 350),
     ).animate(
       CurvedAnimation(
-        parent: _rotationController,
-        curve: Curves.easeOutCubic,
-      ),
-    );
-    _xTranslateAnimation = Tween<double>(begin: 0.0, end: -200.0).animate(
-      CurvedAnimation(
-        parent: _xTranslateController,
+        parent: _yTranslateController,
         curve: Curves.easeOut,
       ),
     );
@@ -44,7 +39,7 @@ class _Homework22ScreenState extends State<Homework22Screen>
 
   @override
   void dispose() {
-    _rotationController.dispose();
+    _yTranslateController.dispose();
     super.dispose();
   }
 
@@ -85,14 +80,11 @@ class _Homework22ScreenState extends State<Homework22Screen>
             child: GestureDetector(
               onTap: _handleBallTap,
               child: AnimatedBuilder(
-                animation: _rotationController,
+                animation: _yTranslateController,
                 builder: (_, child) {
                   return Transform.translate(
-                    offset: Offset(0, _xTranslateAnimation.value),
-                    child: RotationTransition(
-                      turns: _rotationAnimation,
-                      child: child,
-                    ),
+                    offset: Offset(0, _yTranslateAnimation.value),
+                    child: child,
                   );
                 },
                 child: SizedBox(
@@ -109,21 +101,16 @@ class _Homework22ScreenState extends State<Homework22Screen>
   }
 
   void _handleBallTap() {
-    if (_rotationController.isAnimating) return;
+    if (_yTranslateController.isAnimating) return;
 
     const minDuration = 200;
-    const maxDuration = 1500;
+    const maxDuration = 500;
     final duration =
         minDuration + Random().nextInt(maxDuration - minDuration + 1);
 
-    _rotationController
+    _yTranslateController
       ..reset()
       ..duration = Duration(milliseconds: duration)
-      ..forward();
-
-    _xTranslateController
-      ..reset()
-      ..duration = Duration(milliseconds: duration)
-      ..forward().then((_) => _rotationController.reverse());
+      ..forward().then((_) => _yTranslateController.reverse());
   }
 }
