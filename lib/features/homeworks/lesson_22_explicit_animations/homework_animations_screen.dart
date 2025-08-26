@@ -13,8 +13,10 @@ class Homework22Screen extends StatefulWidget {
 class _Homework22ScreenState extends State<Homework22Screen>
     with TickerProviderStateMixin {
   late final AnimationController _yTranslateController;
+  late final AnimationController _rotationController;
 
   late Animation<double> _yTranslateAnimation;
+  late Animation<double> _rotationAnimation;
 
   late final double screenHeight;
 
@@ -28,6 +30,7 @@ class _Homework22ScreenState extends State<Homework22Screen>
     screenHeight = screenHeightPixels / screenPixelRatio;
 
     _yTranslateController = AnimationController(vsync: this);
+    _rotationController = AnimationController(vsync: this);
 
     _yTranslateAnimation = Tween<double>(
       begin: 0.0,
@@ -38,11 +41,17 @@ class _Homework22ScreenState extends State<Homework22Screen>
         curve: Curves.easeOut,
       ),
     );
+
+    _rotationAnimation = Tween<double>(
+      begin: 0,
+      end: 2 * pi,
+    ).animate(_rotationController);
   }
 
   @override
   void dispose() {
     _yTranslateController.dispose();
+    _rotationController.dispose();
     super.dispose();
   }
 
@@ -85,7 +94,10 @@ class _Homework22ScreenState extends State<Homework22Screen>
               builder: (_, child) {
                 return Transform.translate(
                   offset: Offset(0, _yTranslateAnimation.value),
-                  child: child,
+                  child: RotationTransition(
+                    turns: _rotationAnimation,
+                    child: child,
+                  ),
                 );
               },
               child: GestureDetector(
@@ -106,19 +118,35 @@ class _Homework22ScreenState extends State<Homework22Screen>
   void _handleBallTap() {
     if (_yTranslateController.isAnimating) return;
 
-    const min = 300;
-    const max = 700;
-    final randomMilliseconds = min + Random().nextInt(max - min + 1);
+    const minMilliseconds = 300;
+    const maxMilliseconds = 700;
+
+    const minPowerReducer = 0.2;
+    const maxPowerReducer = 0.8;
+
+    final random = Random();
+
+    final randomMilliseconds =
+        minMilliseconds + random.nextInt(maxMilliseconds - minMilliseconds + 1);
+
+    final randomPowerReducer = minPowerReducer +
+        random.nextDouble() * (maxPowerReducer - minPowerReducer);
 
     _startBounce(
       power: 1.0,
+      powerReducer: randomPowerReducer,
       duration: Duration(milliseconds: randomMilliseconds),
     );
   }
 
-  void _startBounce({required double power, required Duration duration}) {
+  void _startBounce({
+    required double power,
+    required double powerReducer,
+    required Duration duration,
+  }) {
     if (power < 0.1) {
       _yTranslateController.reset();
+      _rotationController.stop();
       return;
     }
 
@@ -132,30 +160,25 @@ class _Homework22ScreenState extends State<Homework22Screen>
       ),
     );
 
+    final angularVelocityDuration = Duration(
+      milliseconds: max(200, 1500 ~/ power),
+    );
+
+    _rotationController
+      ..duration = angularVelocityDuration
+      ..repeat();
+
     _yTranslateController
-      ..reset()
       ..duration =
           Duration(milliseconds: (duration.inMilliseconds * power).round())
-      ..forward().then(
-        (_) {
-          _yTranslateAnimation = Tween<double>(
-            begin: _yTranslateAnimation.value,
-            end: 0.0,
-          ).animate(
-            CurvedAnimation(
-              parent: _yTranslateController,
-              curve: Curves.easeIn,
-            ),
+      ..forward().then((_) {
+        _yTranslateController.reverse().then((_) {
+          _startBounce(
+            power: power * powerReducer,
+            powerReducer: power,
+            duration: duration,
           );
-          _yTranslateController
-            ..reset()
-            ..duration = Duration(
-                milliseconds: (duration.inMilliseconds * power).round())
-            // Reduce the bounce power for the next cycle
-            ..forward().then(
-              (_) => _startBounce(power: power * 0.8, duration: duration),
-            );
-        },
-      );
+        });
+      });
   }
 }
