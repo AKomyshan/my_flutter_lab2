@@ -156,7 +156,7 @@ class _Homework22ScreenState extends State<Homework22Screen>
     ).animate(
       CurvedAnimation(
         parent: _yTranslateController,
-        curve: Curves.easeOut,
+        curve: Curves.easeOutSine,
       ),
     );
 
