@@ -121,7 +121,7 @@ class _Homework22ScreenState extends State<Homework22Screen>
     const minMilliseconds = 300;
     const maxMilliseconds = 700;
 
-    const minPowerReducer = 0.2;
+    const minPowerReducer = 0.4;
     const maxPowerReducer = 0.8;
 
     final random = Random();
@@ -171,14 +171,14 @@ class _Homework22ScreenState extends State<Homework22Screen>
     _yTranslateController
       ..duration =
           Duration(milliseconds: (duration.inMilliseconds * power).round())
-      ..forward().then((_) {
-        _yTranslateController.reverse().then((_) {
-          _startBounce(
-            power: power * powerReducer,
-            powerReducer: power,
-            duration: duration,
-          );
-        });
-      });
+      ..forward().then(
+        (_) => _yTranslateController.reverse().then(
+              (_) => _startBounce(
+                power: power * powerReducer,
+                powerReducer: power,
+                duration: duration,
+              ),
+            ),
+      );
   }
 }
