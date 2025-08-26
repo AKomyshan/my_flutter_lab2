@@ -14,7 +14,9 @@ class _Homework22ScreenState extends State<Homework22Screen>
     with TickerProviderStateMixin {
   late final AnimationController _yTranslateController;
 
-  late final Animation<double> _yTranslateAnimation;
+  late Animation<double> _yTranslateAnimation;
+
+  late final double screenHeight;
 
   @override
   void initState() {
@@ -23,12 +25,13 @@ class _Homework22ScreenState extends State<Homework22Screen>
     final currentView = PlatformDispatcher.instance.views.first;
     final screenPixelRatio = currentView.devicePixelRatio;
     final screenHeightPixels = currentView.physicalSize.longestSide;
+    screenHeight = screenHeightPixels / screenPixelRatio;
 
     _yTranslateController = AnimationController(vsync: this);
 
     _yTranslateAnimation = Tween<double>(
       begin: 0.0,
-      end: -((screenHeightPixels / screenPixelRatio) - 350),
+      end: -(screenHeight - 300),
     ).animate(
       CurvedAnimation(
         parent: _yTranslateController,
@@ -77,19 +80,19 @@ class _Homework22ScreenState extends State<Homework22Screen>
           ),
           Positioned(
             bottom: 100,
-            child: GestureDetector(
-              onTap: _handleBallTap,
-              child: AnimatedBuilder(
-                animation: _yTranslateController,
-                builder: (_, child) {
-                  return Transform.translate(
-                    offset: Offset(0, _yTranslateAnimation.value),
-                    child: child,
-                  );
-                },
+            child: AnimatedBuilder(
+              animation: _yTranslateController,
+              builder: (_, child) {
+                return Transform.translate(
+                  offset: Offset(0, _yTranslateAnimation.value),
+                  child: child,
+                );
+              },
+              child: GestureDetector(
+                onTap: _handleBallTap,
                 child: SizedBox(
-                  height: 150,
-                  width: 150,
+                  height: 75,
+                  width: 75,
                   child: Image.asset('assets/images/ball.png'),
                 ),
               ),
@@ -103,14 +106,56 @@ class _Homework22ScreenState extends State<Homework22Screen>
   void _handleBallTap() {
     if (_yTranslateController.isAnimating) return;
 
-    const minDuration = 200;
-    const maxDuration = 500;
-    final duration =
-        minDuration + Random().nextInt(maxDuration - minDuration + 1);
+    const min = 300;
+    const max = 700;
+    final randomMilliseconds = min + Random().nextInt(max - min + 1);
+
+    _startBounce(
+      power: 1.0,
+      duration: Duration(milliseconds: randomMilliseconds),
+    );
+  }
+
+  void _startBounce({required double power, required Duration duration}) {
+    if (power < 0.1) {
+      _yTranslateController.reset();
+      return;
+    }
+
+    _yTranslateAnimation = Tween<double>(
+      begin: 0.0,
+      end: -(screenHeight - 300) * power,
+    ).animate(
+      CurvedAnimation(
+        parent: _yTranslateController,
+        curve: Curves.easeOut,
+      ),
+    );
 
     _yTranslateController
       ..reset()
-      ..duration = Duration(milliseconds: duration)
-      ..forward().then((_) => _yTranslateController.reverse());
+      ..duration =
+          Duration(milliseconds: (duration.inMilliseconds * power).round())
+      ..forward().then(
+        (_) {
+          _yTranslateAnimation = Tween<double>(
+            begin: _yTranslateAnimation.value,
+            end: 0.0,
+          ).animate(
+            CurvedAnimation(
+              parent: _yTranslateController,
+              curve: Curves.easeIn,
+            ),
+          );
+          _yTranslateController
+            ..reset()
+            ..duration = Duration(
+                milliseconds: (duration.inMilliseconds * power).round())
+            // Reduce the bounce power for the next cycle
+            ..forward().then(
+              (_) => _startBounce(power: power * 0.8, duration: duration),
+            );
+        },
+      );
   }
 }
