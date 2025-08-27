@@ -175,7 +175,7 @@ class _Homework22ScreenState extends State<Homework22Screen>
         (_) => _yTranslateController.reverse().then(
               (_) => _startBounce(
                 power: power * powerReducer,
-                powerReducer: power,
+                powerReducer: powerReducer,
                 duration: duration,
               ),
             ),
