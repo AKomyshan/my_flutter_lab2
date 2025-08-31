@@ -28,7 +28,8 @@ class _UserProfileHomeworkScreenState extends State<UserProfileHomeworkScreen> {
             UserProfileLoaded() => _LoadedProfileWidget(user: state.user),
 
             //Error State
-            // TODO(student): Need implement error state
+            UserProfileLoadingError() =>
+              _RefetchProfileWidget(errorMessage: state.message),
           };
         },
       ),
@@ -84,6 +85,32 @@ class _LoadedProfileWidget extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _RefetchProfileWidget extends StatelessWidget {
+  const _RefetchProfileWidget({required this.errorMessage});
+
+  final String errorMessage;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        spacing: 16,
+        children: [
+          Text(
+            errorMessage,
+            style: const TextStyle(color: Colors.red, fontSize: 16),
+          ),
+          ElevatedButton(
+            onPressed: () => context.read<UserProfileCubit>().loadUserProfile(),
+            child: const Text('Спробувати знову'),
+          ),
+        ],
       ),
     );
   }

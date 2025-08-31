@@ -1,14 +1,19 @@
 import 'package:flutter_lab/features/homeworks/lesson_23_error_handling_homework/data/repository/entity/user_entity.dart';
+import 'package:flutter_lab/features/homeworks/lesson_23_error_handling_homework/exceptions/custom_server_exception.dart';
 
 class FakeUserRepository {
   bool _hasFailed = false;
 
   Future<UserEntity> getUserProfile() async {
     await Future<void>.delayed(const Duration(seconds: 1));
-    if (!_hasFailed) {
-      _hasFailed = true;
-      throw Exception('Server is temporarily unavailable');
+    try {
+      if (!_hasFailed) {
+        _hasFailed = true;
+        throw Exception('Server is temporarily unavailable');
+      }
+      return UserEntity(id: '1', name: 'Test User');
+    } on Exception catch (e) {
+      throw CustomServerException(e.toString());
     }
-    return UserEntity(id: '1', name: 'Test User');
   }
 }
