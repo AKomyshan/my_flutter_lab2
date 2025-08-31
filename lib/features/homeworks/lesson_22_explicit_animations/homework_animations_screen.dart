@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
@@ -139,11 +140,11 @@ class _Homework22ScreenState extends State<Homework22Screen>
     );
   }
 
-  void _startBounce({
+  Future<void> _startBounce({
     required double power,
     required double powerReducer,
     required Duration duration,
-  }) {
+  }) async {
     if (power < 0.1) {
       _yTranslateController.reset();
       _rotationController.stop();
@@ -164,21 +165,18 @@ class _Homework22ScreenState extends State<Homework22Screen>
       milliseconds: max(200, 1500 ~/ power),
     );
 
-    _rotationController
-      ..duration = angularVelocityDuration
-      ..repeat();
+    _rotationController.duration = angularVelocityDuration;
 
-    _yTranslateController
-      ..duration =
-          Duration(milliseconds: (duration.inMilliseconds * power).round())
-      ..forward().then(
-        (_) => _yTranslateController.reverse().then(
-              (_) => _startBounce(
-                power: power * powerReducer,
-                powerReducer: power,
-                duration: duration,
-              ),
-            ),
-      );
+    unawaited(_rotationController.repeat());
+
+    _yTranslateController.duration =
+        Duration(milliseconds: (duration.inMilliseconds * power).round());
+    await _yTranslateController.forward();
+    await _yTranslateController.reverse();
+    await _startBounce(
+      power: power * powerReducer,
+      powerReducer: powerReducer,
+      duration: duration,
+    );
   }
 }
