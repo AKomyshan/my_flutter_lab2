@@ -62,8 +62,16 @@ class _JsonDecodingExampleScreenState extends State<JsonDecodingExampleScreen> {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               Text(
-                'Items: ${_chequeEntity!.items}',
+                'Items: ${_chequeEntity!.items.length}',
                 style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              SizedBox(
+                height: 240,
+                child: ListView.separated(
+                  itemBuilder: (_, i) => Text('* ${_chequeEntity!.items[i]}'),
+                  separatorBuilder: (_, __) => const SizedBox(height: 8),
+                  itemCount: _chequeEntity!.items.length,
+                ),
               ),
               Text(
                 'Prediction: ${_chequeEntity!.prediction}',

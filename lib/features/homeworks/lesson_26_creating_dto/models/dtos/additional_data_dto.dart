@@ -4,7 +4,6 @@ part 'additional_data_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class AdditionalDataDto {
-
   AdditionalDataDto({
     required this.id,
     required this.title,
