@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lab/core/network/news_api/fake/news_api_fake.dart';
 import 'package:flutter_lab/core/network/products_api/products_api.dart';
+import 'package:flutter_lab/features/alerts_info/map_testing/map_testing.dart';
+import 'package:flutter_lab/features/alerts_info/screens/alerts_info_screen.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animated_buider.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/animation_controller.dart';
 import 'package:flutter_lab/features/animations/presentation/explicit_animations/examples/build_in_transitions.dart';
@@ -503,6 +505,19 @@ final router = GoRouter(
               builder: (context, state) => WebViewArticleScreen(
                 url: state.pathParameters['url'] ?? '',
               ),
+            ),
+          ],
+        ),
+        // Alerts info
+        GoRoute(
+          path: 'alerts-info',
+          name: ScreenNames.alertsInfo,
+          builder: (_, __) => const AlertsInfoScreen(),
+          routes: [
+            GoRoute(
+              path: 'map-testing',
+              name: ScreenNames.mapTesting,
+              builder: (_, __) => const MapTesting(),
             ),
           ],
         ),

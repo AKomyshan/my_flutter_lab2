@@ -93,4 +93,8 @@ abstract class ScreenNames {
   static const topNews = 'top-news';
 
   static const webViewArticle = 'web-view-article';
+
+  // Alerts info
+  static const alertsInfo = 'alerts-info';
+  static const mapTesting = 'alerts-info-map-testing';
 }
