@@ -55,6 +55,10 @@ class HomeScreen extends StatelessWidget {
               title: 'Top News',
               onTap: () => context.goNamed(ScreenNames.topNews),
             ),
+            FeatureCard(
+              title: 'Alerts info',
+              onTap: () => context.goNamed(ScreenNames.alertsInfo),
+            ),
           ],
         ),
       ),

@@ -17,15 +17,11 @@ class FlutterWidgetsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => CounterBloc(),
-        ),
-        BlocProvider(
-          create: (context) => CounterCubit(),
-        ),
+        BlocProvider(create: (_) => CounterBloc()),
+        BlocProvider(create: (_) => CounterCubit()),
       ],
       child: ChangeNotifierProvider(
-        create: (context) => CounterProvider(),
+        create: (_) => CounterProvider(),
         child: MaterialApp.router(
           routerConfig: router,
         ),
